@@ -17,7 +17,6 @@ function sendEmail(payload) {
   var toEmail = payload.to;
   var subject = payload.subject;
   var content = _templateRead(payload.template, payload);
-  
 
   let smtpTransport = nodemailer.createTransport({
     host: config.cfg.smtp.host,

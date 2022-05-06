@@ -24,7 +24,6 @@ function signUp(userInfo) {
   return userDao.save(user);
 }
 
-
 function isEmailIdExist(params) {
   let query = {};
   query.email = params.email;
@@ -36,7 +35,6 @@ function isEmailIdExist(params) {
     }
   });
 }
-
 
 //========================== Export Module Start ==============================
 

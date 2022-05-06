@@ -170,7 +170,10 @@
         "deprecated": false,
         "tags": ["Product"],
         "description": "Add Product",
-        "consumes":["application/x-www-form-urlencoded","multipart/form-data"],
+        "consumes": [
+          "application/x-www-form-urlencoded",
+          "multipart/form-data"
+        ],
         "produces": ["application/json"],
         "parameters": [
           {
@@ -220,9 +223,9 @@
           },
           {
             "name": "prodImage",
-            "in":"formData",
-            "description":"",
-            "type":"file"
+            "in": "formData",
+            "description": "",
+            "type": "file"
           }
         ],
         "responses": {

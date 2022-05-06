@@ -26,7 +26,7 @@ var UserSchema = new Schema({
   dob: {
     type: String,
     default: "",
-  }
+  },
 });
 
 UserSchema.methods.toJSON = function () {

@@ -1,11 +1,11 @@
-const Promise = require('bluebird'),
-      RedisSessions = require("redis-sessions");
+const Promise = require("bluebird"),
+  RedisSessions = require("redis-sessions");
 
-var rs;  
-var config = require('../config');
-        
+var rs;
+var config = require("../config");
+
 var rsapp = config.cfg.redis.appname;
-    logger = require('../logger');
+logger = require("../logger");
 
 //
 // Parameters for RedisSession:
@@ -21,48 +21,55 @@ var rsapp = config.cfg.redis.appname;
 //
 
 var init = function () {
-    rs = new RedisSessions({host:config.cfg.redis.server,port:config.cfg.redis.port,namespace:config.cfg.redis.namespace});
-}
+  rs = new RedisSessions({
+    host: config.cfg.redis.server,
+    port: config.cfg.redis.port,
+    namespace: config.cfg.redis.namespace,
+  });
+};
 
 //create token
 exports.create = function (value) {
-    return new Promise(function(resolve, reject){
-        rs.create({
-            app: rsapp,
-            id: value.userId,
-            ip: value.IP,
-            ttl: value.expTime,
-            d: value.userObj
-        },
-        function(err, resp) {
-            if(err){
-                reject(err);
-            }
-            if(resp){
-                resolve(resp);
-            }
-          // resp should be something like 
-          // {token: "r30kKwv3sA6ExrJ9OmLSm4Wo3nt9MQA1yG94wn6ByFbNrVWhcwAyOM7Zhfxqh8fe"}
-        });
-    });
-}
+  return new Promise(function (resolve, reject) {
+    rs.create(
+      {
+        app: rsapp,
+        id: value.userId,
+        ip: value.IP,
+        ttl: value.expTime,
+        d: value.userObj,
+      },
+      function (err, resp) {
+        if (err) {
+          reject(err);
+        }
+        if (resp) {
+          resolve(resp);
+        }
+        // resp should be something like
+        // {token: "r30kKwv3sA6ExrJ9OmLSm4Wo3nt9MQA1yG94wn6ByFbNrVWhcwAyOM7Zhfxqh8fe"}
+      }
+    );
+  });
+};
 
 //update token data
-exports.set = function (token,value) {
-    return new Promise(function(resolve, reject){
-        rs.set({
-            app: rsapp,
-            token: token,
-            d: value
-        },
-        function(err, resp) {
-            if(err){
-                reject(err);
-            }
-            if(resp){
-                resolve(resp);
-            }
-            /*
+exports.set = function (token, value) {
+  return new Promise(function (resolve, reject) {
+    rs.set(
+      {
+        app: rsapp,
+        token: token,
+        d: value,
+      },
+      function (err, resp) {
+        if (err) {
+          reject(err);
+        }
+        if (resp) {
+          resolve(resp);
+        }
+        /*
             resp contains the session with the new values:
 
             {  
@@ -79,26 +86,28 @@ exports.set = function (token,value) {
                   "birthday": "2013-08-13"
                 }
             }
-            */  
-        });
-    });
-}
+            */
+      }
+    );
+  });
+};
 
 //get token detail
 exports.getByToken = function (token) {
-    return new Promise(function(resolve, reject){
-        rs.get({
-            app: rsapp,
-            token: token
-        },
-        function(err, resp) {
-            if(err){
-                reject(err);
-            }
-            if(resp){
-                resolve(resp);
-            }
-          /*
+  return new Promise(function (resolve, reject) {
+    rs.get(
+      {
+        app: rsapp,
+        token: token,
+      },
+      function (err, resp) {
+        if (err) {
+          reject(err);
+        }
+        if (resp) {
+          resolve(resp);
+        }
+        /*
           resp contains the session:
           {  
             "id":"user1001",
@@ -115,48 +124,52 @@ exports.getByToken = function (token) {
               }
           }
           */
-        });
-    });
-}
+      }
+    );
+  });
+};
 
 //expair / kill token
 exports.expire = function (token) {
-    return new Promise(function(resolve, reject){
-        rs.kill({
-            app: rsapp,
-            token: token
-        },
-        function(err, resp) {
-            if(err){
-                reject(err);
-            }
-            if(resp){
-                resolve(resp);
-            }
-            /*
+  return new Promise(function (resolve, reject) {
+    rs.kill(
+      {
+        app: rsapp,
+        token: token,
+      },
+      function (err, resp) {
+        if (err) {
+          reject(err);
+        }
+        if (resp) {
+          resolve(resp);
+        }
+        /*
             resp contains the result:
 
             {kill: 1}
-            */  
-        });
-    });
-}
+            */
+      }
+    );
+  });
+};
 
 //get user all session/token detail
 exports.getByUserId = function (userId) {
-    return new Promise(function(resolve, reject){
-        rs.soid({
-          app: rsapp,
-          id: userId
-        },
-        function(err, resp) {
-            if(err){
-                reject(err);
-            }
-            if(resp){
-                resolve(resp);
-            }
-            /*
+  return new Promise(function (resolve, reject) {
+    rs.soid(
+      {
+        app: rsapp,
+        id: userId,
+      },
+      function (err, resp) {
+        if (err) {
+          reject(err);
+        }
+        if (resp) {
+          resolve(resp);
+        }
+        /*
             resp contains the sessions:
 
             { sessions: 
@@ -174,33 +187,35 @@ exports.getByUserId = function (userId) {
                    ip: '127.0.0.1' }
                 ] 
             }
-            */  
-          });
-   });
-}
+            */
+      }
+    );
+  });
+};
 
 //Kill all sessions of an id within an app
 exports.expireByUserId = function (userId) {
-    return new Promise(function(resolve, reject){
-        rs.killsoid({
-            app: rsapp, 
-            id: userId
-        },
-        function(err, resp) {
-            if(err){
-                reject(err);
-            }
-            if(resp){
-                resolve(resp);
-            }
-            /*
+  return new Promise(function (resolve, reject) {
+    rs.killsoid(
+      {
+        app: rsapp,
+        id: userId,
+      },
+      function (err, resp) {
+        if (err) {
+          reject(err);
+        }
+        if (resp) {
+          resolve(resp);
+        }
+        /*
             resp contains the result:
 
             {kill: 2} // The amount of sessions that were killed
-            */  
-        });
-    });
-}
-
+            */
+      }
+    );
+  });
+};
 
 init();

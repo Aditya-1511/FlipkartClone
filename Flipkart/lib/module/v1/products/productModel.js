@@ -35,9 +35,9 @@ var ProductSchema = new Schema({
   quantity: {
     type: Number,
   },
-  key :{
-    type : String
-  } 
+  key: {
+    type: String,
+  },
 });
 
 ProductSchema.methods.toJSON = function () {

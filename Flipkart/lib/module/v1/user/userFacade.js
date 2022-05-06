@@ -61,10 +61,10 @@ function login(loginInfo) {
         // return usrService.verifyUser(loginInfo)
         var tokenObj = buildUserTokenGenObj(user);
         // console.log(tokenObj);
-                var token = await jwtHandler.genUsrToken(tokenObj);
-                console.log(token);
-                //store token in redis
-                redisClient.setValue(user.email, token);
+        var token = await jwtHandler.genUsrToken(tokenObj);
+        console.log(token);
+        //store token in redis
+        redisClient.setValue(user.email, token);
       } else {
         return usrService.login(loginInfo);
       }

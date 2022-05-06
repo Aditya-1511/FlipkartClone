@@ -35,11 +35,11 @@ async function getProduct(productInfo) {
 
 async function place_order(productInfo) {
   const data = await productService.place_order(productInfo);
- productInfo.quantity = data.quantity - productInfo.quantity;
-  if(data){
-   var updatedResult = await productService.update_product(productInfo);
-   nodemailer.send_mail(productInfo.email, data);
-  //  console.log(updatedResult);
+  productInfo.quantity = data.quantity - productInfo.quantity;
+  if (data) {
+    var updatedResult = await productService.update_product(productInfo);
+    nodemailer.send_mail(productInfo.email, data);
+    //  console.log(updatedResult);
   }
   // return map;
 }
@@ -48,7 +48,6 @@ async function update_product(productInfo) {
   // console.log(productInfo);
   const data = await productService.update_product(productInfo);
   // console.log(data)
-
 }
 
 async function delete_product(productInfo) {
@@ -57,7 +56,6 @@ async function delete_product(productInfo) {
   // console.log(data, "facade data");
   middleware.deletefromaws(data.key);
   // console.log(data)
-
 }
 
 //========================== Export Module Start ==============================
@@ -67,7 +65,7 @@ module.exports = {
   getProduct,
   place_order,
   update_product,
-  delete_product
+  delete_product,
 };
 
 //========================== Export Module End ===============================signUp

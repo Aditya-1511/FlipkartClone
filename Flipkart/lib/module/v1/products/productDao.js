@@ -50,7 +50,7 @@ async function getProduct(productInfo) {
 }
 
 async function place_order(productInfo) {
- // console.log(productInfo.productId);
+  // console.log(productInfo.productId);
   const result = await productDao.findOne({
     _id: productInfo.productId,
   });
@@ -58,45 +58,45 @@ async function place_order(productInfo) {
 }
 
 async function update_product(params) {
-console.log(params);
+  console.log(params);
   var query = {};
-  query._id= params.productId;
+  query._id = params.productId;
   let update = {};
 
   update.quantity = params.quantity;
   let option = {};
   option.new = true;
-  const result = await productDao.findByIdAndUpdate(query,update,option);
+  const result = await productDao.findByIdAndUpdate(query, update, option);
   //console.log(result);
   //return result;
 }
 
-async function updated_product(params){
-    console.log(params);
+async function updated_product(params) {
+  console.log(params);
   var query = {};
-  query._id= params.productId;
+  query._id = params.productId;
   let update = {};
   update.quantity = params.quantity;
   let option = {};
   option.new = true;
-  const result = await productDao.findByIdAndUpdate(query,update,option);
+  const result = await productDao.findByIdAndUpdate(query, update, option);
   console.log(result, "result");
 }
 
-async function delete_product(params){
+async function delete_product(params) {
   // console.log(params);
-var query = {};
-query._id= params.productId;
-const result = await productDao.findOne(query);
-// console.log(result, "result");
+  var query = {};
+  query._id = params.productId;
+  const result = await productDao.findOne(query);
+  // console.log(result, "result");
 
-const deleteFromDb =await productDao.findByIdAndRemove(query);
-if(deleteFromDb){
-  console.log("Product deleted successfully");
-}else{
-  console.log("Product has already been deleted");
-}
-return result;
+  const deleteFromDb = await productDao.findByIdAndRemove(query);
+  if (deleteFromDb) {
+    console.log("Product deleted successfully");
+  } else {
+    console.log("Product has already been deleted");
+  }
+  return result;
 }
 
 //========================== Export Module Start ==============================
@@ -106,7 +106,7 @@ module.exports = {
   place_order,
   update_product,
   updated_product,
-  delete_product
+  delete_product,
 };
 
 //========================== Export Module End ===============================
