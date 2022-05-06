@@ -5,7 +5,7 @@ const constants = require("../../../constant");
 const usrFacade = require("./userFacade");
 const validators = require("./userValidators");
 
-usrRoutr.route("/signup").post(function (req, res) {
+usrRoutr.route("/signup").post([validators.validateSignup],function (req, res) {
   let { name, email, password, gender, dob } = req.body;
   console.log(req.body);
   usrFacade
@@ -31,7 +31,7 @@ usrRoutr.route("/login").post([validators.validateLogin], function (req, res) {
     });
 });
 
-usrRoutr.route("/logout").post(function (req, res) {
+usrRoutr.route("/logout").post([middleware.authenticate.autntctTkn],function (req, res) {
   let { accessToken, email } = req.body;
   usrFacade
     .logout({ email, accessToken })
