@@ -18,7 +18,7 @@ usrRoutr.route("/signup").post([validators.validateSignup],function (req, res) {
     });
 });
 
-usrRoutr.route("/login").post([validators.validateLogin], function (req, res) {
+usrRoutr.route("/login").post([middleware.authenticate.autntctTkn,validators.validateLogin], function (req, res) {
   let { email, password } = req.body;
 
   usrFacade
