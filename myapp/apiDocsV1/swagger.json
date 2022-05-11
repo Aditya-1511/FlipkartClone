@@ -144,12 +144,36 @@
         "produces": ["application/json"],
         "parameters": [
           {
-            "name": "email",
+            "name": "accessToken",
             "in": "formData",
-            "description": "email",
+            "description": "",
             "required": true,
             "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
           },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/delete": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Logout",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
           {
             "name": "accessToken",
             "in": "formData",
@@ -185,29 +209,29 @@
         "produces": ["application/json"],
         "parameters": [
           {
-            "name": "userId",
-            "in": "formData",
-            "description": "",
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
             "required": true,
-            "type": "number"
+            "type": "string"
           },
           {
             "name": "postCaption",
             "in": "formData",
-            "description": "",
-            "type": "string"
-          },
-          {
-            "name": "postLocation",
-            "in": "formData",
-            "description": "",
+            "description": "caption",
             "type": "string"
           },
           {
             "name": "postImage",
             "in": "formData",
-            "description": "",
+            "description": "photo",
             "type": "file"
+          },
+          {
+            "name": "postLocation",
+            "in": "formData",
+            "description": "location",
+            "type": "string"
           }
         ],
         "responses": {
@@ -234,16 +258,22 @@
         "produces": ["application/json"],
         "parameters": [
           {
-            "name": "productId",
+            "name": "postId",
             "in": "formData",
             "description": "",
             "type": "string"
           },
           {
-            "name": "quantity",
+            "name": "userId",
             "in": "formData",
-            "description": "Enter product quantity",
-            "type": "number"
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "contentToUpdate",
+            "in": "formData",
+            "description": "",
+            "type": "string"
           }
         ],
         "responses": {
@@ -270,11 +300,19 @@
         "produces": ["application/json"],
         "parameters": [
           {
-            "name": "productId",
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          { "name": "postId",
             "in": "formData",
-            "description": "",
+            "description": "postid",
+            "required": true,
             "type": "string"
           }
+
         ],
         "responses": {
           "200": {
@@ -291,7 +329,7 @@
         ]
       }
     },
-    "/like-comment/add_like": {
+    "/like-comment/add_like_comment": {
       "post": {
         "deprecated": false,
         "tags": ["Likes and Comments"],
@@ -300,11 +338,33 @@
         "produces": ["application/json"],
         "parameters": [
           {
-            "name": "productId",
+            "name": "accesstoken",
+            "in": "header",
+            "description": "accesstoken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "postId",
             "in": "formData",
-            "description": "",
+            "description": "postid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "likePost",
+            "in": "formData",
+            "description": " 1 for  Like",
+            "enum": [1],
+            "type": "integer"
+          },
+          {
+            "name": "commentOnPost",
+            "in": "formData",
+            "description": "comment",
             "type": "string"
           }
+
         ],
         "responses": {
           "200": {
@@ -321,8 +381,8 @@
         ]
       }
     },
-    "/like-comment/delete_like": {
-      "delete": {
+    "/like-comment/total_likes_on_post": {
+      "get": {
         "deprecated": false,
         "tags": ["Likes and Comments"],
         "description": "Delete Product",
@@ -330,41 +390,20 @@
         "produces": ["application/json"],
         "parameters": [
           {
-            "name": "productId",
-            "in": "formData",
-            "description": "",
+            "name": "accesstoken",
+            "in": "header",
+            "description": "accesstoken",
+            "required": true,
             "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully"
           },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security": [
           {
-            "basicAuth": ["Username: ", "Password: "]
-          }
-        ]
-      }
-    },
-    "/like-comment/add_comment": {
-      "post": {
-        "deprecated": false,
-        "tags": ["Likes and Comments"],
-        "description": "Delete Product",
-        "consumes": ["application/x-www-form-urlencoded"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "productId",
-            "in": "formData",
-            "description": "",
+            "name": "postId",
+            "in": "query",
+            "description": "postID",
+            "required": true,
             "type": "string"
           }
+
         ],
         "responses": {
           "200": {
@@ -390,7 +429,52 @@
         "produces": ["application/json"],
         "parameters": [
           {
-            "name": "productId",
+            "name": "accesstoken",
+            "in": "header",
+            "description": "accesstoken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "commentId",
+            "in": "formData",
+            "description": "commentID",
+            "type": "string"
+          },
+          {
+            "name": "commentOnPost",
+            "in": "formData",
+            "description": "comment",
+            "required": true,
+            "type": "string"
+          }
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/like-comment/delete_like": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Likes and Comments"],
+        "description": "Delete Product",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "likeId",
             "in": "formData",
             "description": "",
             "type": "string"
@@ -420,7 +504,7 @@
         "produces": ["application/json"],
         "parameters": [
           {
-            "name": "productId",
+            "name": "commentId",
             "in": "formData",
             "description": "",
             "type": "string"
