@@ -73,13 +73,6 @@
             "description": "",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "dob",
-            "in": "formData",
-            "description": "",
-            "required": true,
-            "type": "number"
           }
         ],
         "responses": {
@@ -306,13 +299,13 @@
             "required": true,
             "type": "string"
           },
-          { "name": "postId",
+          {
+            "name": "postId",
             "in": "formData",
             "description": "postid",
             "required": true,
             "type": "string"
           }
-
         ],
         "responses": {
           "200": {
@@ -364,7 +357,6 @@
             "description": "comment",
             "type": "string"
           }
-
         ],
         "responses": {
           "200": {
@@ -403,7 +395,6 @@
             "required": true,
             "type": "string"
           }
-
         ],
         "responses": {
           "200": {
@@ -448,7 +439,6 @@
             "required": true,
             "type": "string"
           }
-
         ],
         "responses": {
           "200": {

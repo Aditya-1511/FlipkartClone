@@ -1,13 +1,28 @@
-var mongoose = require("mongoose");
-var userSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    password: String,
-  });
-  var userdata = mongoose.model("userdata", userSchema);
+// Importing mongoose
+const mongoose = require("mongoose");
 
-  userSchema.methods.toJSON = function () {
-    var obj = this.toObject();
-    delete obj.updated;
-    return obj;
-  };
+const Schema = mongoose.Schema;
+
+var UserSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        index: true,
+        unique: true,
+        required : true
+    },
+    password: {
+        type: String,
+        required : true
+    }
+},
+{timestamps : true}
+);
+
+
+//Export user module
+const User = mongoose.model("User", UserSchema);
+ module.exports = User

@@ -1,7 +1,12 @@
-var userModel = require('../model/userModel');
+const mongoose = require('mongoose');
+const userModel = require('../model/userModel');
 
-// Connecting MongoDb
-const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/instagram").then(() => {
-  console.log("\nMongoDb Connected Successfully");
-});
+async function dbConnection(){
+    await mongoose.connect("mongodb://localhost:27017/instagram")
+        console.log("MongoDb connected successfully");
+}
+
+
+module.exports = {
+    dbConnection
+};
