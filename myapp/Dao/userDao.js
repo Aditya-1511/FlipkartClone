@@ -7,6 +7,7 @@ const { db, findOne } = require("../model/userModel");
 
 //========================== Load internal modules ====================
 const User = require("../model/userModel");
+const jwt = require('../jwtHandler');
 
 //========================== Load Modules End ==============================================
 
@@ -40,11 +41,7 @@ async function userLogin(userInfo) {
   let emailExist = await db.collection("user").findOne(query);
   let passwordMatched = await db.collection("user").findOne(passwordQuery);
 
-  if (emailExist && passwordMatched) {
-    console.log("Login successful");
-  } else {
-    console.log("Wrong credentials entered");
-  }
+  return emailExist;
 }
 //========================== Export Module Start ==============================
 
