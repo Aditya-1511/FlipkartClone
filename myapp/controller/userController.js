@@ -34,7 +34,7 @@ async function userLogout(email) {
 }
 
 async function userDelete(userid) {
-  // console.log(userid, "userId");
+  console.log(userid, "userId in controller");
   return userDao.userDelete(userid);
 }
 module.exports = {
