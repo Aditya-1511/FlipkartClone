@@ -13,28 +13,44 @@ const User = require("../model/userModel");
 async function signUp(userInfo) {
   let user = new User(userInfo);
   //   console.log(user);
-//    console.log(userInfo.email);
-   let query = {};
-   query.email = userInfo.email;
-//    console.log(query.email);
+  //    console.log(userInfo.email);
+  let query = {};
+  query.email = userInfo.email;
+  //    console.log(query.email);
 
   let emailExist = await db.collection("user").findOne(query);
-//   console.log(emailExist, "emailexist")
+  //   console.log(emailExist, "emailexist")
 
-if(emailExist){
+  if (emailExist) {
     console.log("This email has already been taken");
-}else{
+  } else {
     let result = db.collection("user").insertOne(user);
-  if(result){
+    if (result) {
       console.log("Data inserted ");
+    }
   }
 }
-}
 
+async function userLogin(userInfo) {
+  // console.log(userInfo, "userinfo");
+  let query = {};
+  query.email = userInfo.email;
+  let passwordQuery = {};
+  query.password = userInfo.password;
+  let emailExist = await db.collection("user").findOne(query);
+  let passwordMatched = await db.collection("user").findOne(passwordQuery);
+
+  if (emailExist && passwordMatched) {
+    console.log("Login successful");
+  } else {
+    console.log("Wrong credentials entered");
+  }
+}
 //========================== Export Module Start ==============================
 
 module.exports = {
   signUp,
+  userLogin,
 };
 
 //========================== Export Module End ===============================
