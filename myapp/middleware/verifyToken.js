@@ -2,7 +2,7 @@ var jwt = require("jsonwebtoken");
 var redisClient = require("../redis/redisClient");
 
 async function isValidToken(req, res, next) {
-    console.log(req.body)
+  console.log(req.body);
   try {
     const decode = jwt.verify(
       req.headers.accesstoken,
@@ -13,9 +13,7 @@ async function isValidToken(req, res, next) {
       req.payload = decode;
       next();
     } else {
-      res.send(
-          "Your Session Expired Please Login !!!!"
-      );
+      res.send("Your Session Expired Please Login !!!!");
     }
   } catch (error) {
     res.send(error);
@@ -23,5 +21,5 @@ async function isValidToken(req, res, next) {
 }
 
 module.exports = {
-    isValidToken
-}
+  isValidToken,
+};

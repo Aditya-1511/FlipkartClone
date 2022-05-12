@@ -29,10 +29,24 @@ router.post("/login", (req, res) => {
 
 router.post("/logout", [middleware.isValidToken], (req, res) => {
   console.log("Logout route is working fine");
-  console.log(req.payload);
+  // console.log(req.payload);
   let email = req.payload;
   userController
     .userLogout(email)
+    .then(function (result) {
+      res.send(result);
+    })
+    .catch(function (error) {
+      res.send(error);
+    });
+});
+
+router.delete("/delete", (req, res) => {
+  console.log("Delete route is working fine");
+  // console.log(req.headers.userid, "userid");
+  let userid = req.headers.userid;
+  userController
+    .userDelete(userid)
     .then(function (result) {
       res.send(result);
     })

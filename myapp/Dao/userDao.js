@@ -43,11 +43,25 @@ async function userLogin(userInfo) {
 
   return emailExist;
 }
+
+async function userDelete(userid) {
+  // console.log(userid, "userid");
+  let query = {};
+  query._id = userid;
+  // console.log(query, "query");
+  // console.log(query._id, "query._id");
+  // console.log(userid, "userid");
+  let userExist = await db.collection("user").deleteOne(query);
+
+  console.log(userExist);
+  // return userExist;
+}
 //========================== Export Module Start ==============================
 
 module.exports = {
   signUp,
   userLogin,
+  userDelete,
 };
 
 //========================== Export Module End ===============================

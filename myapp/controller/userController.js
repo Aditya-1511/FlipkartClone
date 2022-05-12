@@ -32,7 +32,13 @@ async function userLogout(email) {
     return "User has been logged out successfully";
   }
 }
+
+async function userDelete(userid) {
+  // console.log(userid, "userId");
+  return userDao.userDelete(userid);
+}
 module.exports = {
   userLogin,
   userLogout,
+  userDelete,
 };

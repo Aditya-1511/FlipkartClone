@@ -160,7 +160,7 @@
       }
     },
     "/user/delete": {
-      "post": {
+      "delete": {
         "deprecated": false,
         "tags": ["User"],
         "description": "Logout",
@@ -168,8 +168,8 @@
         "produces": ["application/json"],
         "parameters": [
           {
-            "name": "accessToken",
-            "in": "formData",
+            "name": "userId",
+            "in": "header",
             "description": "",
             "required": true,
             "type": "string"
