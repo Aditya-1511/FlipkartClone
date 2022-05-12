@@ -138,7 +138,7 @@
         "parameters": [
           {
             "name": "accessToken",
-            "in": "formData",
+            "in": "header",
             "description": "",
             "required": true,
             "type": "string"

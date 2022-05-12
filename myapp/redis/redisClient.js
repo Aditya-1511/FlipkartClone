@@ -35,8 +35,8 @@ exports.setValue = async function (key, value) {
 };
 
 exports.getValue = function (key) {
-  return client
-    .getAsync(key)
+  return redisClient
+    .get(key)
     .then(function (response) {
       return response;
     })
@@ -57,9 +57,9 @@ exports.expire = function (key, expiryTime) {
     });
 };
 
-exports.deleteValue = function (key) {
-  return client
-    .delAsync(key)
+exports.deleteValue = async function (key) {
+  return redisClient
+    .del(key)
     .then(function (response) {
       return response;
     })

@@ -25,6 +25,14 @@ async function userLogin(userInfo) {
     });
 }
 
+async function userLogout(email) {
+  // console.log(email, "email");
+  let deletedUser = await redisClient.deleteValue(email);
+  if (deletedUser) {
+    return "User has been logged out successfully";
+  }
+}
 module.exports = {
   userLogin,
+  userLogout,
 };
