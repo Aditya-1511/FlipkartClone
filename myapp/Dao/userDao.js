@@ -7,7 +7,7 @@ const { db, findOne } = require("../model/userModel");
 
 //========================== Load internal modules ====================
 const User = require("../model/userModel");
-const jwt = require('../jwtHandler');
+const jwt = require("../jwtHandler");
 
 //========================== Load Modules End ==============================================
 
