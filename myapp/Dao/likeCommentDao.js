@@ -62,8 +62,8 @@ async function updateComment(postInfo) {
   query._id = postInfo.commentId._id;
   let update = {};
   update.commentOnPost = commentToUpdate.commentOnPost;
-//   console.log(query, "query");
-//   console.log(update, "update");
+  //   console.log(query, "query");
+  //   console.log(update, "update");
   let updateComment = await db
     .collection("likeComments")
     .updateOne(
@@ -71,7 +71,7 @@ async function updateComment(postInfo) {
       { $set: update },
       { upsert: true }
     );
-//   console.log(updateComment, "updateComment in postDao");
+  //   console.log(updateComment, "updateComment in postDao");
   return updateComment;
 }
 
