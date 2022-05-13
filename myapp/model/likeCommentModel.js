@@ -10,10 +10,11 @@ var likeCommentSchema = new Schema({
   },
   likePost: {
     type: Number,
+    default: 0,
   },
   commentOnPost: {
     type: String,
-  }
+  },
 });
 
 //Export user module

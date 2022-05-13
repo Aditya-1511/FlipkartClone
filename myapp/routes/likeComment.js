@@ -5,9 +5,27 @@ var likeCommentDao = require("../Dao/likeCommentDao");
 var likeCommentController = require("../controller/likeCommentController");
 var verifyToken = require("../middleware/verifyToken");
 
-router.post('/add_like_comment', (req,res)=>{
-    console.log("Add like comment route is working fine");
-    likeCommentController.addLikeComment(req.body);
+router.post("/add_like_comment", (req, res) => {
+  console.log("Add like comment route is working fine");
+  console.log(typeof req.body.likePost, "typeroute");
+  likeCommentController
+    .addLikeComment(req.body)
+    .then(function (result) {
+      return result;
+    })
+    .catch(function (error) {
+      return error;
+    });
 });
+
+router.get("/total_likes_on_post", [verifyToken.isValidToken], (req, res) => {
+  console.log("Total likes route is working fine");
+  // console.log(req.headers.accesstoken);
+  // console.log(req.query, "req.query");
+
+  likeCommentController.getTotalLikes(req.query);
+});
+
+
 
 module.exports = router;

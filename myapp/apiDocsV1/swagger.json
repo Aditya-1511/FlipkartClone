@@ -462,66 +462,6 @@
           }
         ]
       }
-    },
-    "/like-comment/delete_like": {
-      "delete": {
-        "deprecated": false,
-        "tags": ["Likes and Comments"],
-        "description": "Delete Product",
-        "consumes": ["application/x-www-form-urlencoded"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "likeId",
-            "in": "formData",
-            "description": "",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security": [
-          {
-            "basicAuth": ["Username: ", "Password: "]
-          }
-        ]
-      }
-    },
-    "/like-comment/delete_comment": {
-      "delete": {
-        "deprecated": false,
-        "tags": ["Likes and Comments"],
-        "description": "Delete Product",
-        "consumes": ["application/x-www-form-urlencoded"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "commentId",
-            "in": "formData",
-            "description": "",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security": [
-          {
-            "basicAuth": ["Username: ", "Password: "]
-          }
-        ]
-      }
     }
   },
   "securityDefinitions": {
