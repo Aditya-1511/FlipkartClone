@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/user", usersRouter);
-app.use('/post', postsRouter);
+app.use("/post", postsRouter);
 
 //MongoDb Connection
 var mongoose = require("./config/dbConfig");

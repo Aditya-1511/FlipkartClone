@@ -2,7 +2,7 @@ var jwt = require("jsonwebtoken");
 var redisClient = require("../redis/redisClient");
 
 async function isValidToken(req, res, next) {
-  console.log(req.body);
+  // console.log("headers",req.headers);
   try {
     const decode = jwt.verify(
       req.headers.accesstoken,

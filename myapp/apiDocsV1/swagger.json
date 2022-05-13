@@ -54,6 +54,13 @@
         "produces": ["application/json"],
         "parameters": [
           {
+            "name": "userid",
+            "in": "formData",
+            "description": "",
+            "type": "number",
+            "required": true
+          },
+          {
             "name": "name",
             "in": "formData",
             "description": "",
@@ -202,6 +209,13 @@
         "produces": ["application/json"],
         "parameters": [
           {
+            "name": "userid",
+            "in": "formData",
+            "description": "",
+            "required": true,
+            "type": "number"
+          },
+          {
             "name": "accessToken",
             "in": "header",
             "description": "accessToken",
@@ -257,13 +271,7 @@
             "type": "string"
           },
           {
-            "name": "userId",
-            "in": "formData",
-            "description": "",
-            "type": "string"
-          },
-          {
-            "name": "contentToUpdate",
+            "name": "captionToupdate",
             "in": "formData",
             "description": "",
             "type": "string"
