@@ -26,6 +26,10 @@ router.get("/total_likes_on_post", [verifyToken.isValidToken], (req, res) => {
   likeCommentController.getTotalLikes(req.query);
 });
 
-
+router.put("/update_comment", (req, res) => {
+  console.log("Update comment route is working fine");
+  // console.log(req.body);
+  likeCommentController.updateComment(req.body);
+});
 
 module.exports = router;

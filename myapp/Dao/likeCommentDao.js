@@ -53,8 +53,31 @@ async function getTotalLikes(postId) {
   // });
 }
 
+async function updateComment(postInfo) {
+  console.log(postInfo, "postInfo in Dao");
+  console.log("likeCommentDao");
+  let commentToUpdate = postInfo.commentOnPost;
+  // console.log(commentToUpdate, "comment to update");
+  let query = {};
+  query._id = postInfo.commentId._id;
+  let update = {};
+  update.commentOnPost = commentToUpdate.commentOnPost;
+//   console.log(query, "query");
+//   console.log(update, "update");
+  let updateComment = await db
+    .collection("likeComments")
+    .updateOne(
+      { _id: new ObjectId(postInfo.commentId) },
+      { $set: update },
+      { upsert: true }
+    );
+//   console.log(updateComment, "updateComment in postDao");
+  return updateComment;
+}
+
 module.exports = {
   addLikeComment,
   getPost,
   getTotalLikes,
+  updateComment,
 };

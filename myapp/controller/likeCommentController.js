@@ -25,7 +25,25 @@ async function getTotalLikes(postId) {
   likeCommentDao.getTotalLikes(postId);
 }
 
+async function updateComment(postInfo) {
+  // console.log(postInfo)
+  console.log("likeCommentController");
+  return await likeCommentDao
+    .updateComment(postInfo)
+    .then(async function (result) {
+      if (result) {
+        return await likeCommentDao.updateComment(postInfo.commentOnPost);
+      } else {
+        return "Post does not exist";
+      }
+    })
+    .catch(function (error) {
+      return "No post found";
+    });
+}
+
 module.exports = {
   addLikeComment,
   getTotalLikes,
+  updateComment,
 };
