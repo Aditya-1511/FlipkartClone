@@ -21,7 +21,7 @@ router.post("/signup", [validation.validateSignup], (req, res) => {
   res.send("User signed up successfully");
 });
 
-router.post("/login", [validation.validateLogin], (req, res) => {
+router.post("/login",  (req, res) => {
   // console.log(req.body);
   console.log("Login route is working fine");
   userController
