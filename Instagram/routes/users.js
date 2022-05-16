@@ -6,16 +6,18 @@ var userDao = require("../Dao/userDao");
 var userController = require("../controller/userController");
 var middleware = require("../middleware/verifyToken");
 var validation = require("../middleware/validation");
-var resHndlr = require('../responseHandler');
+var resHndlr = require("../responseHandler");
 
 router.post("/signup", [validation.validateSignup], (req, res) => {
   console.log("Signup route is working fine");
-  userDao.signUp(req.body)
-  .then(function (result) {
-    resHndlr.sendSuccess(res, result,req);
-}).catch(function (err) {
-    resHndlr.sendError(res, err,req);
-})
+  userDao
+    .signUp(req.body)
+    .then(function (result) {
+      resHndlr.sendSuccess(res, result, req);
+    })
+    .catch(function (err) {
+      resHndlr.sendError(res, err, req);
+    });
 
   // console.log(user);
   res.send("User signed up successfully");

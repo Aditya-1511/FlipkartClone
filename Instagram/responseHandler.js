@@ -1,6 +1,6 @@
 var constant = require("./constant"),
   customException = require("./customException"),
-//   logger = require("./logger").logger,
+  //   logger = require("./logger").logger,
   APIResponse = require("./APIResponse");
 
 // var sendgrid_email = require("./service/sendgrid_email");
@@ -15,7 +15,7 @@ function sendError(response, error, request) {
   // if error doesn't has sc than it is an unhandled error,
   // log error, and throw intrnl server error
   if (!error.errorCode) {
-  // error(error, "Unhandled error.");
+    // error(error, "Unhandled error.");
     error = customException.intrnlSrvrErr(error);
   }
   var result = new APIResponse(constant.STATUS_CODE.ERROR, error, request);

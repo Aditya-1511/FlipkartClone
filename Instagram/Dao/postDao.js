@@ -6,7 +6,7 @@ const ObjectId = require("mongodb").ObjectId;
 async function add_post(postInfo) {
   // console.log(postInfo, "postInfo in postDao");
   let addPostToDb = await db.collection("posts").insertOne(postInfo);
-  console.log("addPostToDb in postDao",addPostToDb);
+  console.log("addPostToDb in postDao", addPostToDb);
   return addPostToDb;
 }
 
