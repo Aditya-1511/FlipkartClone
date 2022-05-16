@@ -4,8 +4,9 @@ var likeCommentModel = require("../model/likeCommentModel");
 var likeCommentDao = require("../Dao/likeCommentDao");
 var likeCommentController = require("../controller/likeCommentController");
 var verifyToken = require("../middleware/verifyToken");
+var likeCommentValidation = require('../middleware/likeCommentValidation');
 
-router.post("/add_like_comment", (req, res) => {
+router.post("/add_like_comment",[likeCommentValidation.validateLikeComment], (req, res) => {
   console.log("Add like comment route is working fine");
   console.log(typeof req.body.likePost, "typeroute");
   likeCommentController
@@ -18,7 +19,7 @@ router.post("/add_like_comment", (req, res) => {
     });
 });
 
-router.get("/total_likes_on_post", [verifyToken.isValidToken], (req, res) => {
+router.get("/total_likes_on_post", [likeCommentValidation.validateLikeComment,verifyToken.isValidToken], (req, res) => {
   console.log("Total likes route is working fine");
   // console.log(req.headers.accesstoken);
   // console.log(req.query, "req.query");
@@ -26,7 +27,7 @@ router.get("/total_likes_on_post", [verifyToken.isValidToken], (req, res) => {
   likeCommentController.getTotalLikes(req.query);
 });
 
-router.put("/update_comment", (req, res) => {
+router.put("/update_comment",[likeCommentValidation.validateLikeComment,verifyToken.isValidToken], (req, res) => {
   console.log("Update comment route is working fine");
   // console.log(req.body);
   likeCommentController.updateComment(req.body);
