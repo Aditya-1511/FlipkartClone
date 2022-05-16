@@ -47,8 +47,8 @@ app.use(function (err, req, res, next) {
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+  // res.status(err.status || 500);
+  // res.render("error");
 });
 console.log("Server is running on port 3000");
 module.exports = app;
