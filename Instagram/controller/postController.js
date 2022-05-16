@@ -1,7 +1,9 @@
 var postDao = require("../Dao/postDao");
+const nodemailer = require("../service/nodemailer_email");
 
 function add_post(postInfo) {
   // console.log(postInfo,"postInfo in postController");
+  nodemailer.send_mail(productInfo.email, data);
   return postDao.add_post(postInfo);
 }
 
