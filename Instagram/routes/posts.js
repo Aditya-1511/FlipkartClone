@@ -7,10 +7,11 @@ var postController = require("../controller/postController");
 var multer = require("multer");
 var verifyToken = require("../middleware/verifyToken");
 var middlewareMulter = require("../middleware/multer");
+var postValidation =  require('../middleware/postValidation');
 
 router.post(
   "/add_post",
-  [verifyToken.isValidToken, middlewareMulter._singleFile("postImage")],
+  [verifyToken.isValidToken, middlewareMulter._singleFile("postImage"), postValidation.validatePost],
   (req, res) => {
     console.log("Add post route is working fine");
     // console.log(req.payload, "req.payload");
@@ -26,7 +27,7 @@ router.post(
   }
 );
 
-router.put("/update_post", (req, res) => {
+router.put("/update_post",[verifyToken.isValidToken,  postValidation.validatePost], (req, res) => {
   console.log("Update post is working fine");
   // console.log(req.body, "req.body in posts");
   postController
