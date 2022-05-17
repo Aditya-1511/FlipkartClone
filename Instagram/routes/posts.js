@@ -13,8 +13,7 @@ router.post(
   "/add_post",
   [
     verifyToken.isValidToken,
-    middlewareMulter._singleFile("postImage"),
-    postValidation.validatePost,
+    middlewareMulter._singleFile("postImage")
   ],
   (req, res) => {
     console.log("Add post route is working fine");
@@ -60,6 +59,19 @@ router.delete("/delete_post", [verifyToken.isValidToken], (req, res) => {
     .catch(function (result) {
       res.send("No post to delete");
     });
+});
+
+router.get('/get_all_information', (req,res)=>{
+  console.log("Get all information route is working fine");
+  // console.log(req.headers.accesstoken);
+  let accessToken = req.headers.accesstoken;
+ return postController.get_all_information(accessToken)
+ .then(function(result){
+   res.send(result);
+ })
+ .catch(function(error){
+   res.send(error);
+ })
 });
 
 module.exports = router;

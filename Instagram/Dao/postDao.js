@@ -52,9 +52,31 @@ async function delete_post(postId) {
   return deletePost;
 }
 
+async function get_all_information(accessToken) {
+  console.log("Get all information in postDao");
+  // console.log(accessToken);
+  const res = await postModel.aggregate([
+    {
+      $match : {__v : 0}
+    },
+    {
+      $lookup : {
+        from : "likeComments",
+        localField : "_id",
+        foreignField : "postId",
+        as : "Like-Comment"
+      }
+    }
+  ])
+  console.log(res, "res");
+  console.log("Get all information in postDao");
+  return res;
+}
+
 module.exports = {
   add_post,
   update_post,
   get_post,
   delete_post,
+  get_all_information,
 };

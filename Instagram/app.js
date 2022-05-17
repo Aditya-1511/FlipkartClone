@@ -8,6 +8,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var postsRouter = require("./routes/posts");
 var likeCommentRouter = require("./routes/likeComment");
+// var getAllInformationRouter = require('./routes/getAllInformation');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use("/", indexRouter);
 app.use("/user", usersRouter);
 app.use("/post", postsRouter);
 app.use("/like-comment", likeCommentRouter);
+// app.use("/information", getAllInformationRouter);
 
 //MongoDb Connection
 var mongoose = require("./config/dbConfig");

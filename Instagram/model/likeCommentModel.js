@@ -1,11 +1,12 @@
 // Importing mongoose
 const mongoose = require("mongoose");
+const {ObjectId} = require('mongodb');
 
 const Schema = mongoose.Schema;
 
 var likeCommentSchema = new Schema({
   postId: {
-    type: Number,
+    type: ObjectId,
     required: true,
   },
   likePost: {

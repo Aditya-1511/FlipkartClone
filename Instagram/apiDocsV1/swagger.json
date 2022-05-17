@@ -35,6 +35,13 @@
       "externalDocs": {
         "description": ""
       }
+    },
+    {
+      "name": "Get all the information",
+      "description": "",
+      "externalDocs": {
+        "description": ""
+      }
     }
   ],
   "schemes": ["http", "https"],
@@ -446,6 +453,37 @@
             "description": "comment",
             "required": true,
             "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/post/get_all_information": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Posts"],
+        "description": "",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "type": "string",
+            "required": true
           }
         ],
         "responses": {
