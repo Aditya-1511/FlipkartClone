@@ -1,19 +1,32 @@
-var multer = require("multer");
+const multer = require("multer");
+const fs = require("fs");
+// config = require('.');
 
-const fileStorageEngine = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./uploads");
+var fileName;
+var storage = multer.diskStorage({
+  destination: function (request, file, callback) {
+    callback(null, "./uploads");
   },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "--" + file.originalname);
+  filename: function (request, file, callback) {
+    var time = new Date().getTime();
+    fileName = file.fieldname + "_" + time + "_" + file.originalname;
+    callback(null, fileName);
   },
 });
-const upload = multer({ storage: fileStorageEngine });
+
+var upload = multer({ storage: storage });
 
 function _singleFile(key) {
   return upload.single(key);
 }
 
+function _fileArray(key, count) {
+  return upload.array(key, count);
+}
+
+// ========================== Export Module Start ==========================
 module.exports = {
-  _singleFile,
+  single: _singleFile,
+  array: _fileArray,
 };
+// ========================== Export Module End ============================

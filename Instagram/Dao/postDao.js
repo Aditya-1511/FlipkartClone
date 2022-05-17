@@ -57,17 +57,39 @@ async function get_all_information(accessToken) {
   // console.log(accessToken);
   const res = await postModel.aggregate([
     {
-      $match : {__v : 0}
+      $match: { __v: 0 },
     },
     {
-      $lookup : {
-        from : "likeComments",
-        localField : "_id",
-        foreignField : "postId",
-        as : "Like-Comment"
-      }
-    }
-  ])
+      $lookup: {
+        from: "likeComments",
+        localField: "_id",
+        foreignField: "postId",
+        as: "Like-Comment",
+      },
+    },
+    {
+      $lookup: {
+        from: "user",
+        localField: "userid",
+        foreignField: "userid",
+        as: "User-Information",
+      },
+    },
+    {
+      $project: {
+        _id: 1,
+        postCaption: 1,
+        postLocation: 1,
+        imageLoction: 1,
+        "Like-Comment._id": 1,
+        "Like-Comment.postId": 1,
+        "Like-Comment.commentOnPost": 1,
+        "User-Information._id": 1,
+        "User-Information.name": 1,
+        "User-Information.email": 1,
+      },
+    },
+  ]);
   console.log(res, "res");
   console.log("Get all information in postDao");
   return res;

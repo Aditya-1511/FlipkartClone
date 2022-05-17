@@ -30,15 +30,15 @@ async function delete_post(postInfo) {
   return await postDao.delete_post(postInfo);
 }
 
-function get_all_information(accessToken){
+function get_all_information(accessToken) {
   console.log("Get all info in postController");
   // console.log(accessToken);
- return postDao.get_all_information(accessToken);
+  return postDao.get_all_information(accessToken);
 }
 
 module.exports = {
   add_post,
   update_post,
   delete_post,
-  get_all_information
+  get_all_information,
 };

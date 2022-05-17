@@ -360,6 +360,13 @@
             "type": "string"
           },
           {
+            "name": "userid",
+            "in": "formData",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "likePost",
             "in": "formData",
             "description": " 1 for  Like",

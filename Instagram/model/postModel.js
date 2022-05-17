@@ -14,9 +14,11 @@ var postSchema = new Schema({
   postLocation: {
     type: String,
   },
-  imageLink: {
-    type: String,
-  },
+  imageLink: [
+    {
+      type: String,
+    },
+  ],
 });
 
 //Export user module
