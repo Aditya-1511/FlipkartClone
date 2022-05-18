@@ -56,9 +56,9 @@ async function get_all_information(accessToken) {
   console.log("Get all information in postDao");
   // console.log(accessToken);
   const res = await postModel.aggregate([
-    {
-      $match: { __v: 0 },
-    },
+    // {
+    //   $match: { __v: 0 },
+    // },
     {
       $lookup: {
         from: "likeComments",
