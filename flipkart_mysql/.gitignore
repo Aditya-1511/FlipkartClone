@@ -1,0 +1,5 @@
+/.env
+/package-lock.json
+/app.log
+/env.example
+/node_modules
