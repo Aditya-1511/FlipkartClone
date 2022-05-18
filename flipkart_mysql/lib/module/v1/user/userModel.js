@@ -1,39 +1,39 @@
 // Importing mongoose
-const config = require('../../../config/');
-const {Sequelize, DataTypes} = require('sequelize');
-const sequelize = new Sequelize('mysql::memory:');
+var mongoose = require("mongoose");
 var constants = require("../../../constant");
 
+var Schema = mongoose.Schema;
+var User;
 
-const User = sequelize.define('User', {
-  // Model attributes are defined here
+var UserSchema = new Schema({
   name: {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: String,
+    default: "",
+    required: true,
   },
   email: {
-    type: DataTypes.STRING
-    // allowNull defaults to true
+    type: String,
+    index: true,
+    unique: true,
   },
   password: {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: String,
+    required: true,
   },
   gender: {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: String,
   },
   dob: {
-    type: DataTypes.NUMBER,
-    allowNull: false
+    type: String,
+    default: "",
   },
-}, {
-  // Other model options go here
 });
 
-// `sequelize.define` also returns the model
-console.log(User === sequelize.models.User); // true
+UserSchema.methods.toJSON = function () {
+  var obj = this.toObject();
+  delete obj.updated;
+  return obj;
+};
 
-module.exports = {
-  User
-}
+//Export user module
+User = module.exports = mongoose.model(constants.DB_MODEL_REF.USER, UserSchema);

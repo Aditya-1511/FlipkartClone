@@ -19,7 +19,7 @@ const jwtHandler = require("../../../jwtHandler");
 //========================== Load Modules End ==============================================
 
 function signUp(loginInfo) {
-  // console.log(loginInfo);
+  // console.log(loginInfo)
   return usrService
     .isEmailIdExist(loginInfo)
     .bind({})
@@ -44,11 +44,6 @@ function signUp(loginInfo) {
     });
 }
 
-/**
- * @function login
- * login via email
- * @param {Object} loginInfo login details
- */
 function login(loginInfo) {
   return usrService
     .isEmailIdExist(loginInfo)

@@ -15,12 +15,10 @@ function login(loginInfo) {
 }
 
 function signUp(loginInfo) {
-  console.log(loginInfo, "loginInfo in userService.signUp");
   return userDao.signUp(loginInfo);
 }
 
 function isEmailIdExist(loginInfo) {
-  
   return userDao.isEmailIdExist(loginInfo);
 }
 

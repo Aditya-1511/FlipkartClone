@@ -15,6 +15,13 @@
       "externalDocs": {
         "description": ""
       }
+    },
+    {
+      "name": "Admin",
+      "description": "Operations about admin",
+      "externalDocs": {
+        "description": ""
+      }
     }
   ],
   "schemes": ["http", "https"],
