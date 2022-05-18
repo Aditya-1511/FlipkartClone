@@ -17,8 +17,7 @@ const userDao = new BaseDao(User);
 //========================== Load Modules End ==============================================
 
 function signUp(userInfo) {
-  userInfo.totalPred = 0;
-  (userInfo.wonPred = 0), (userInfo.lostPred = 0);
+  console.log(userInfo)
 
   let user = new User(userInfo);
   // console.log(user);
@@ -26,6 +25,7 @@ function signUp(userInfo) {
 }
 
 function isEmailIdExist(params) {
+  // console.log(params);
   let query = {};
   query.email = params.email;
   return userDao.findOne(query).then(function (result) {
