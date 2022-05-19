@@ -7,7 +7,7 @@ const validators = require("./userValidators");
 
 usrRoutr.route("/signup").post([validators.validateSignup],function (req, res) {
   let { name, email, password, gender, dob } = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   usrFacade
     .signUp({ name, email, password, gender, dob })
     .then(function (result) {
