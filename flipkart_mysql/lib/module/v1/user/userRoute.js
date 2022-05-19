@@ -4,10 +4,10 @@ const middleware = require("../../../middleware");
 const constants = require("../../../constant");
 const usrFacade = require("./userFacade");
 const validators = require("./userValidators");
-const UserModel = require("./userModel");
+const UserModel = require('./userModel');
 
 usrRoutr.route("/signup").post(async function (req, res) {
-  let { name, email, password, gender, dob } = req.body;
+  let {name, email, password, gender, dob } = req.body;
   // // console.log(req.body);
   // usrFacade
   //   .signUp({ name, email, password, gender, dob })
@@ -18,46 +18,33 @@ usrRoutr.route("/signup").post(async function (req, res) {
   //     resHndlr.sendError(res, err, req);
   //   });
 
-  const jane = await UserModel.User.build({
-    name: name,
-    email: email,
-    password: password,
-    gender: gender,
-    dob: dob,
-  });
-  return jane.save();
+  const jane =await UserModel.User.build({ name : name, email : email, password: password, gender : gender, dob:dob });
+        return jane.save();
 });
 
-usrRoutr
-  .route("/login")
-  .post(
-    [middleware.authenticate.autntctTkn, validators.validateLogin],
-    function (req, res) {
-      let { email, password } = req.body;
+usrRoutr.route("/login").post([middleware.authenticate.autntctTkn,validators.validateLogin], function (req, res) {
+  let { email, password } = req.body;
 
-      usrFacade
-        .login({ email, password })
-        .then(function (result) {
-          resHndlr.sendSuccess(res, result, req);
-        })
-        .catch(function (err) {
-          resHndlr.sendError(res, err, req);
-        });
-    }
-  );
+  usrFacade
+    .login({ email, password })
+    .then(function (result) {
+      resHndlr.sendSuccess(res, result, req);
+    })
+    .catch(function (err) {
+      resHndlr.sendError(res, err, req);
+    });
+});
 
-usrRoutr
-  .route("/logout")
-  .post([middleware.authenticate.autntctTkn], function (req, res) {
-    let { accessToken, email } = req.body;
-    usrFacade
-      .logout({ email, accessToken })
-      .then(function (result) {
-        resHndlr.sendSuccess(res, result, req);
-      })
-      .catch(function (err) {
-        resHndlr.sendError(res, err, req);
-      });
-  });
+usrRoutr.route("/logout").post([middleware.authenticate.autntctTkn],function (req, res) {
+  let { accessToken, email } = req.body;
+  usrFacade
+    .logout({ email, accessToken })
+    .then(function (result) {
+      resHndlr.sendSuccess(res, result, req);
+    })
+    .catch(function (err) {
+      resHndlr.sendError(res, err, req);
+    });
+});
 
 module.exports = usrRoutr;
