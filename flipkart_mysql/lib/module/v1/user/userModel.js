@@ -1,4 +1,3 @@
-
 // import
 const constants = require("../../../constant");
 const { Sequelize, DataTypes } = require("sequelize");
@@ -33,5 +32,5 @@ const User = sequelize.define(constants.DB_MODEL_REF.USER, {
 })();
 
 module.exports = {
-  User
+  User,
 };
