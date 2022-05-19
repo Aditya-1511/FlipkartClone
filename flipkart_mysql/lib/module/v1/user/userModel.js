@@ -66,36 +66,11 @@ const User = sequelize.define(constants.DB_MODEL_REF.USER, {
   },
 });
 
-// const Product = sequelize.define(constants.DB_MODEL_REF.PRODUCT, {
-//   productName: {
-//     type: DataTypes.STRING,
-//   },
-//   productId: {
-//     type: DataTypes.NUMBER,
-//   },
-//   color: {
-//     type: DataTypes.STRING,
-//   },
-//   size: {
-//     type: DataTypes.NUMBER,
-//   },
-//   deliveryPinCode: {
-//     type: DataTypes.NUMBER,
-//   },
-//   quantity: {
-//     type: DataTypes.NUMBER,
-//   },
-//   price: {
-//     type: DataTypes.NUMBER,
-//   },
-// });
-
 (async () => {
   await sequelize.sync({ force: true });
   // Code here
 })();
 
 module.exports = {
-  User,
-  // Product
+  User
 };
