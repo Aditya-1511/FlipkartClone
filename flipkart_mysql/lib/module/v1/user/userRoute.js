@@ -6,7 +6,7 @@ const usrFacade = require("./userFacade");
 const validators = require("./userValidators");
 const UserModel = require("./userModel");
 
-usrRoutr.route("/signup").post(async function (req, res) {
+usrRoutr.route("/signup").post([validators.validateSignup],async function (req, res) {
   let { name, email, password, gender, dob } = req.body;
   // // console.log(req.body);
   // usrFacade
