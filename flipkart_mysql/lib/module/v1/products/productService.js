@@ -39,6 +39,11 @@ async function delete_product(productInfo) {
   return result;
 }
 
+async function get_all_information(accessToken) {
+  // console.log('productService', accessToken);
+  productDao.get_all_information(accessToken);
+}
+
 //========================== Export Module Start ==============================
 
 module.exports = {
@@ -47,6 +52,7 @@ module.exports = {
   place_order,
   update_product,
   delete_product,
+  get_all_information,
 };
 
 //========================== Export Module End ===============================

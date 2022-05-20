@@ -59,6 +59,11 @@ async function delete_product(productInfo) {
   // console.log(data)
 }
 
+async function get_all_information(accessToken) {
+  // console.log("productFacade", accessToken);
+  productService.get_all_information(accessToken);
+}
+
 //========================== Export Module Start ==============================
 
 module.exports = {
@@ -67,6 +72,7 @@ module.exports = {
   place_order,
   update_product,
   delete_product,
+  get_all_information,
 };
 
 //========================== Export Module End ===============================signUp

@@ -106,6 +106,9 @@ usrRoutr.route("/delete_product").delete(async function (req, res) {
 
 usrRoutr.route("/get_all_information").get(function (req, res) {
   console.log("Get all information is working fine");
+  // console.log(req.headers.accesstoken);
+  let accessToken = req.headers.accesstoken;
+  productFacade.get_all_information(accessToken);
 });
 
 module.exports = usrRoutr;
