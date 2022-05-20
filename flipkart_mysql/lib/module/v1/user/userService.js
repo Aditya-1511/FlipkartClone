@@ -19,6 +19,7 @@ function signUp(loginInfo) {
 }
 
 function isEmailIdExist(loginInfo) {
+  // console.log(loginInfo, "saJAfdhgd");
   return userDao.isEmailIdExist(loginInfo);
 }
 

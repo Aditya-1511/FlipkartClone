@@ -19,63 +19,37 @@ const jwtHandler = require("../../../jwtHandler");
 //========================== Load Modules End ==============================================
 
 function signUp(loginInfo) {
-  // console.log(loginInfo)
-  return usrService
-    .isEmailIdExist(loginInfo)
-    .bind({})
-    .then(function (user) {
-      this.user = user;
-      if (this.user) {
-        return usrService.updateUser(loginInfo);
-      } else {
-        return usrService.signUp(loginInfo);
-      }
-    })
-    .then(function (user) {
-      return userMapper.loginMapping({
-        user: user,
-        jwt: "12345",
-        hitTime: [],
-        chanellist: [],
-        currentVersion: loginInfo.currentVersion,
-        deviceTypeID: loginInfo.deviceTypeID,
-        appType: loginInfo.appType,
-      });
-    });
+  // console.log(loginInfo, "AJSgdafdvkjsvfbfkshfd")
+  return usrService.isEmailIdExist(loginInfo).then(function (result) {
+    if (result[0 != undefined]) {
+      return "exist";
+    } else {
+      return usrService.signUp(loginInfo);
+    }
+  });
+  // console.log(loginInfo);
 }
 
-function login(loginInfo) {
-  return usrService
-    .isEmailIdExist(loginInfo)
-    .bind({})
-    .then(async function (user) {
-      this.user = user;
-      if (this.user) {
-        if (loginInfo.password === user.password) {
-          console.log("Login Successful");
-        }
-        // return usrService.verifyUser(loginInfo)
-        var tokenObj = buildUserTokenGenObj(user);
-        // console.log(tokenObj);
-        var token = await jwtHandler.genUsrToken(tokenObj);
-        console.log(token);
-        //store token in redis
-        redisClient.setValue(user.email, token);
-      } else {
-        return usrService.login(loginInfo);
+async function login(loginInfo) {
+  return usrService.isEmailIdExist(loginInfo).then(async function (user) {
+    if (user[0] != undefined) {
+      console.log("Login successful");
+      if (loginInfo.password === user.password) {
+        console.log("Login Successful");
       }
-    })
-    .then(function (user) {
-      return userMapper.loginMapping({
-        user: user,
-        jwt: "12345",
-        hitTime: [],
-        chanellist: [],
-        currentVersion: loginInfo.currentVersion,
-        deviceTypeID: loginInfo.deviceTypeID,
-        appType: loginInfo.appType,
-      });
-    });
+      // return usrService.verifyUser(loginInfo)
+      var tokenObj = buildUserTokenGenObj(user);
+      // console.log(user, "user");
+      // console.log(tokenObj, "tokenObj");
+      var token = await jwtHandler.generateUserToken(tokenObj);
+      // console.log(token, "token");
+      //store token in redis
+      redisClient.setValue(loginInfo.email, token);
+    } else {
+      // console.log("User already exists");
+      return usrService.login(loginInfo);
+    }
+  });
 }
 
 function logout(loginInfo) {
@@ -84,12 +58,10 @@ function logout(loginInfo) {
 }
 
 function buildUserTokenGenObj(user) {
+  // console.log(user, "user");
   var userObj = {};
-  // userObj.deviceToken = user.deviceToken;
-  userObj.email = user.email;
-  //userObj.deviceTypeID = user.deviceTypeID;
-  // userObj.deviceID = user.deviceID;
-  userObj.userId = user._id;
+  userObj.email = user[0].dataValues.email;
+  // console.log(userObj)
   return userObj;
 }
 

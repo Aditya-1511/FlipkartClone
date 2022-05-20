@@ -7,34 +7,26 @@ var promise = require("bluebird");
 
 var _ = require("lodash");
 //========================== Load internal modules ====================
-const User = require("./userModel");
+const userModel = require("./userModel");
 
 // init user dao
-let BaseDao = require("../../../dao/baseDao");
-const userDao = new BaseDao(User);
+// let BaseDao = require("../../../dao/baseDao");
+// const userDao = new BaseDao(UserModel);
 
 //========================== Load Modules End ==============================================
 
-function signUp(userInfo) {
-  userInfo.totalPred = 0;
-  (userInfo.wonPred = 0), (userInfo.lostPred = 0);
-
-  let user = new User(userInfo);
-  // console.log(user);
-  return userDao.save(user);
+async function signUp(userInfo) {
+  // console.log(userInfo, "hasfjgvfhvma");
+  const jane = await userModel.User.build(userInfo);
+  return jane.save();
 }
 
-function isEmailIdExist(params) {
-  // console.log(params, "params in userDao");
-  let query = {};
-  query.email = params.email;
-  // return userDao.findOne(query).then(function (result) {
-  //   if (result) {
-  //     return result;
-  //   } else {
-  //     return false;
-  //   }
-  // });
+async function isEmailIdExist(params) {
+  // console.log(params, "sahgfasjdgfsahdf");
+  let emailExists = await userModel.User.findAll({
+    where: { email: params.email },
+  });
+  return emailExists;
 }
 
 //========================== Export Module Start ==============================
