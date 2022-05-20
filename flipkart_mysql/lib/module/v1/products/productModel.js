@@ -1,53 +1,42 @@
-// Importing mongoose
-var mongoose = require("mongoose");
-var constants = require("../../../constant");
+// import
+const constants = require("../../../constant");
+const { Sequelize, DataTypes } = require("sequelize");
 
-var Schema = mongoose.Schema;
-var Product;
+//intialise db
+const sequelize = new Sequelize("flipkart_mysql", "Aditya", "Aditya@123", {
+  host: "localhost",
+  dialect: "mysql",
+});
 
-var ProductSchema = new Schema({
+const Product = sequelize.define(constants.DB_MODEL_REF.PRODUCT, {
   productName: {
-    type: String,
-    default: "",
-    required: true,
+    type: DataTypes.STRING,
   },
   productId: {
-    type: String,
-    index: true,
-    unique: true,
-  },
-  location: {
-    type: String,
-  },
-  price: {
-    type: Number,
-    required: true,
+    type: DataTypes.INTEGER,
   },
   deliveryPinCode: {
-    type: Number,
+    type: DataTypes.INTEGER,
   },
-  size: {
-    type: Number,
+  price: {
+    type: DataTypes.INTEGER,
   },
   color: {
-    type: String,
+    type: DataTypes.STRING,
+  },
+  size: {
+    type: DataTypes.INTEGER,
   },
   quantity: {
-    type: Number,
-  },
-  key: {
-    type: String,
+    type: DataTypes.INTEGER,
   },
 });
 
-ProductSchema.methods.toJSON = function () {
-  var obj = this.toObject();
-  delete obj.updated;
-  return obj;
-};
+(async () => {
+  await sequelize.sync({ force: false });
+  // Code here
+})();
 
-//Export user module
-Product = module.exports = mongoose.model(
-  constants.DB_MODEL_REF.PRODUCT,
-  ProductSchema
-);
+module.exports = {
+  Product,
+};

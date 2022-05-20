@@ -15,7 +15,7 @@ usrRoutr
       validators.validateProduct,
     ],
     function (req, res) {
-      console.log(req.body.key);
+      // console.log(req.body.key);
       let {
         productName,
         productId,
@@ -24,8 +24,6 @@ usrRoutr
         size,
         color,
         quantity,
-        location,
-        key,
       } = req.body;
       // console.log(req.body, "add product");
       productFacade
@@ -37,8 +35,6 @@ usrRoutr
           size,
           color,
           quantity,
-          location,
-          key,
         })
         .then(function (result) {
           resHndlr.sendSuccess(res, result, req);
@@ -106,6 +102,10 @@ usrRoutr.route("/delete_product").delete(async function (req, res) {
     .catch(function (err) {
       resHndlr.sendError(res, err, req);
     });
+});
+
+usrRoutr.route("/get_all_information").get(function (req, res) {
+  console.log("Get all information is working fine");
 });
 
 module.exports = usrRoutr;

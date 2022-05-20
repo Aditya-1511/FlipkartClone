@@ -34,6 +34,7 @@ async function getProduct(productInfo) {
 }
 
 async function place_order(productInfo) {
+  // console.log(productInfo);
   const data = await productService.place_order(productInfo);
   productInfo.quantity = data.quantity - productInfo.quantity;
   if (data) {

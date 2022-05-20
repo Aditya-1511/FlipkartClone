@@ -373,6 +373,37 @@
           }
         ]
       }
+    },
+    "/product/get_all_information": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Product"],
+        "description": "Get Product",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
     }
   },
   "securityDefinitions": {

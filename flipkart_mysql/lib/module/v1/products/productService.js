@@ -23,7 +23,7 @@ async function getProduct(productInfo) {
 async function place_order(productInfo) {
   // console.log(productInfo)
   const result = await productDao.place_order(productInfo);
-  console.log(result, "result from service");
+  // console.log(result, "result from service");
   return result;
 }
 
