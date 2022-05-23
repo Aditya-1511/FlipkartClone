@@ -6,29 +6,23 @@ var mongoose = require("mongoose");
 const { db, findOne } = require("../model/userModel");
 
 //========================== Load internal modules ====================
-const User = require("../model/userModel");
+const userModel = require("../model/userModel");
 const jwt = require("../jwtHandler");
 
 //========================== Load Modules End ==============================================
 
 async function signUp(userInfo) {
-  let user = new User(userInfo);
-  //   console.log(user);
-  //    console.log(userInfo.email);
-  let query = {};
-  query.email = userInfo.email;
-  //    console.log(query.email);
-
-  let emailExist = await db.collection("user").findOne(query);
-  //   console.log(emailExist, "emailexist")
-
-  if (emailExist) {
+  // console.log(userInfo, "userInfo in Dao");
+  // console.log(userInfo.email);
+  let emailExists = await userModel.User.findAll({
+    where: { email: userInfo.email },
+  });
+  // console.log(emailExists, "emailExists");
+  if (emailExists[0]) {
     console.log("This email has already been taken");
   } else {
-    let result = db.collection("user").insertOne(user);
-    if (result) {
-      console.log("Data inserted ");
-    }
+    const jane = await userModel.User.build(userInfo);
+    return jane.save();
   }
 }
 

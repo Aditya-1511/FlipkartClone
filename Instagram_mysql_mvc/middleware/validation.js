@@ -42,6 +42,18 @@ var validateSignup = function (req, res, next) {
       message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "Password"),
     });
   }
+  if (_.isEmpty(dob)) {
+    errors.push({
+      fieldName: "dob",
+      message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "dob"),
+    });
+  }
+  if (_.isEmpty(gender)) {
+    errors.push({
+      fieldName: "gender",
+      message: constant.MESSAGES.KEY_CANT_EMPTY.replace("{{key}}", "gender"),
+    });
+  }
 
   if (errors && errors.length > 0) {
     validationError(errors, next);

@@ -9,6 +9,9 @@ const sequelize = new Sequelize("instagram_mysql", "Aditya", "Aditya@123", {
 });
 
 const User = sequelize.define(constants.DB_MODEL_REF.USER, {
+  userid: {
+    type: DataTypes.INTEGER,
+  },
   name: {
     type: DataTypes.STRING,
   },

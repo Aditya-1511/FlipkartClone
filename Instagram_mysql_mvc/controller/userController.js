@@ -3,6 +3,12 @@ var userDao = require("../Dao/userDao");
 var jwtHandler = require("../jwtHandler");
 var redisClient = require("../redis/redisClient");
 
+async function signUp(userInfo) {
+  // console.log(userInfo, "userInfo in Controller");
+  // console.log("userController");
+  userDao.signUp(userInfo);
+}
+
 async function userLogin(userInfo) {
   // console.log("Reached userController");
   // console.log(userInfo, "userInfo");
@@ -38,6 +44,7 @@ async function userDelete(userid) {
   return userDao.userDelete(userid);
 }
 module.exports = {
+  signUp,
   userLogin,
   userLogout,
   userDelete,

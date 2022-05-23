@@ -87,6 +87,18 @@
             "description": "",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "dob",
+            "in": "formData",
+            "description": "",
+            "type": "varchar"
+          },
+          {
+            "name": "gender",
+            "in": "formData",
+            "description": "",
+            "type": "string"
           }
         ],
         "responses": {

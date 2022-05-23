@@ -1,16 +1,16 @@
 var express = require("express");
 const { db } = require("../model/userModel");
 var router = express.Router();
-var User = require("../model/userModel");
+var userModel = require("../model/userModel");
 var userDao = require("../Dao/userDao");
 var userController = require("../controller/userController");
 var middleware = require("../middleware/verifyToken");
 var validation = require("../middleware/validation");
 var resHndlr = require("../responseHandler");
 
-router.post("/signup", [validation.validateSignup], (req, res) => {
+router.post("/signup", (req, res) => {
   console.log("Signup route is working fine");
-  userDao
+  userController
     .signUp(req.body)
     .then(function (result) {
       resHndlr.sendSuccess(res, result, req);
@@ -18,9 +18,8 @@ router.post("/signup", [validation.validateSignup], (req, res) => {
     .catch(function (err) {
       resHndlr.sendError(res, err, req);
     });
-
   // console.log(user);
-  res.send("User signed up successfully");
+  // res.send("User signed up successfully");
 });
 
 router.post("/login", [validation.validateLogin], (req, res) => {
