@@ -1,0 +1,517 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Instagram",
+    "description": "",
+    "contact": {
+      "email": ""
+    },
+    "version": "",
+    "termsOfService": "",
+    "license": {
+      "name": "",
+      "url": ""
+    }
+  },
+  "basePath": "",
+  "tags": [
+    {
+      "name": "User",
+      "description": "",
+      "externalDocs": {
+        "description": ""
+      }
+    },
+    {
+      "name": "Posts",
+      "description": "",
+      "externalDocs": {
+        "description": ""
+      }
+    },
+    {
+      "name": "Likes and Comments",
+      "description": "",
+      "externalDocs": {
+        "description": ""
+      }
+    },
+    {
+      "name": "Get all the information",
+      "description": "",
+      "externalDocs": {
+        "description": ""
+      }
+    }
+  ],
+  "schemes": ["http", "https"],
+  "consumes": [
+    "application/json",
+    "application/x-www-form-urlencoded",
+    "multipart/form-data"
+  ],
+  "produces": ["application/json"],
+  "paths": {
+    "/user/signup": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Signup",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "formData",
+            "description": "",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/login": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "password",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/logout": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Logout",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/delete": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Logout",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/post/add_post": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Posts"],
+        "description": "Add Post",
+        "consumes": [
+          "application/x-www-form-urlencoded",
+          "multipart/form-data"
+        ],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "formData",
+            "description": "",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "postCaption",
+            "in": "formData",
+            "description": "caption",
+            "type": "string"
+          },
+          {
+            "name": "postImage",
+            "in": "formData",
+            "description": "photo",
+            "type": "file"
+          },
+          {
+            "name": "postLocation",
+            "in": "formData",
+            "description": "location",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/post/update_post": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Posts"],
+        "description": "Update Product",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "formData",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "captionToupdate",
+            "in": "formData",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/post/delete_post": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Posts"],
+        "description": "Delete Product",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "accessToken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "postId",
+            "in": "formData",
+            "description": "postid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/like-comment/add_like_comment": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Likes and Comments"],
+        "description": "Delete Product",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accesstoken",
+            "in": "header",
+            "description": "accesstoken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "postId",
+            "in": "formData",
+            "description": "postid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userid",
+            "in": "formData",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "likePost",
+            "in": "formData",
+            "description": " 1 for  Like",
+            "enum": [1],
+            "type": "integer"
+          },
+          {
+            "name": "commentOnPost",
+            "in": "formData",
+            "description": "comment",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/like-comment/total_likes_on_post": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Likes and Comments"],
+        "description": "Delete Product",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accesstoken",
+            "in": "header",
+            "description": "accesstoken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "postId",
+            "in": "query",
+            "description": "postID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/like-comment/update_comment": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Likes and Comments"],
+        "description": "Delete Product",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accesstoken",
+            "in": "header",
+            "description": "accesstoken",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "commentId",
+            "in": "formData",
+            "description": "commentID",
+            "type": "string"
+          },
+          {
+            "name": "commentOnPost",
+            "in": "formData",
+            "description": "comment",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/post/get_all_information": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Posts"],
+        "description": "",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "basicAuth": {
+      "type": "basic"
+    }
+  }
+}
