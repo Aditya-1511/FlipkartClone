@@ -15,14 +15,14 @@ const LOGIN_TYPE = {};
 //     GOOGLE: 2,
 //   };
 
-  const DB_MODEL_REF = {
-    WHITELIST: "whitelist",
-    USER: "User",
-    POST: "Post",
-    ADMIN: "Admin",
-    MESSAGE: "Message",
-    GROUP: "Group",
-  };
+const DB_MODEL_REF = {
+  WHITELIST: "whitelist",
+  USER: "User",
+  POST: "Post",
+  ADMIN: "Admin",
+  MESSAGE: "Message",
+  GROUP: "Group",
+};
 
 //   const TRANSACTION_TYPE = {
 //     REFERRAL: 1,
@@ -71,7 +71,7 @@ const MESSAGES = {
   STRIPE_ERROR: "Stripe invalid request error.",
   TOKEN_EXPIRED: "Token link has been expired.",
   SESSION_EXPIRED: "Your session has expired due to login in another device.",
-  INCORRECT_PASS: "Invalid email or passoword",
+  INCORRECT_PASS: "Invalid email or password",
 };
 
 const EMAIL = {
