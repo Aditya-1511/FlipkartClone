@@ -8,7 +8,7 @@ var middleware = require("../middleware/verifyToken");
 var validation = require("../middleware/validation");
 var resHndlr = require("../responseHandler");
 
-router.post("/signup", (req, res) => {
+router.post("/signup", [validation.validateSignup], (req, res) => {
   console.log("Signup route is working fine");
   userController
     .signUp(req.body)
