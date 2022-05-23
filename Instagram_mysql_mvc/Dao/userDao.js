@@ -43,19 +43,15 @@ async function userLogin(userInfo) {
 }
 
 async function userDelete(userid) {
-  // console.log("==================================");
-  // console.log(userid, "userid in Dao 1");
-  let query = {};
-  query._id = mongoose.Types.ObjectId(userid);
-  // mongoose.Types.ObjectId(query);
-  // console.log(userid, "userid in Dao 2");
-  // console.log(query, "query in Dao");
-  // console.log(query._id, "query._id in Dao");
-  // console.log(userid, "userid in Dao 3");
-  let userExist = await db.collection("user").deleteOne(query);
-  // console.log(userExist);
-  // console.log("==============================");
-  return userExist;
+  //  console.log(userid, "userid in userDao");
+  let userExists = await userModel.User.findAll({
+    where: { userid: userid },
+  });
+  if (userExists[0]) {
+    let deleteUser = await userModel.User.destroy(userid);
+  } else {
+    console.log("User does not exist");
+  }
 }
 //========================== Export Module Start ==============================
 

@@ -53,14 +53,13 @@ router.delete("/delete", (req, res) => {
   console.log("Delete route is working fine");
   // console.log(req.headers.userid, "userid");
   let userid = req.headers.userid;
-  userController
-    .userDelete(userid)
-    .then(function (result) {
-      res.send(result);
-    })
-    .catch(function (error) {
-      res.send(error);
-    });
+  userController.userDelete(userid);
+  // .then(function (result) {
+  //   res.send(result);
+  // })
+  // .catch(function (error) {
+  //   res.send(error);
+  // });
 });
 
 module.exports = router;

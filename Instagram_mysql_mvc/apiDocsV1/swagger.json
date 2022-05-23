@@ -198,7 +198,7 @@
             "in": "header",
             "description": "",
             "required": true,
-            "type": "string"
+            "type": "number"
           }
         ],
         "responses": {
