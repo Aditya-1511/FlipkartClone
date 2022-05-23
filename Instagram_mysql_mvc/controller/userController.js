@@ -17,14 +17,14 @@ async function userLogin(userInfo) {
     .userLogin(userInfo)
     .then(async function (result) {
       // console.log(result, "result");
-      if (result.password == userInfo.password) {
-        console.log("Login successful");
-        var userToken = jwtHandler.generateUserToken(result.email);
-        // console.log(userToken);
-        let rs = await redisClient.setValue(result.email, userToken);
+      // console.log(result[0].dataValues.email);
+      var userToken = jwtHandler.generateUserToken(result[0].dataValues.email);
 
-        return userToken;
-      }
+      let rs = await redisClient.setValue(
+        result[0].dataValues.email,
+        userToken
+      );
+      return userToken;
     })
     .catch(function (error) {
       return "Wrong credentials entered";

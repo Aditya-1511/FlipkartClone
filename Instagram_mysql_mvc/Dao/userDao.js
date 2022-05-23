@@ -28,14 +28,18 @@ async function signUp(userInfo) {
 
 async function userLogin(userInfo) {
   // console.log(userInfo, "userinfo");
-  let query = {};
-  query.email = userInfo.email;
-  let passwordQuery = {};
-  query.password = userInfo.password;
-  let emailExist = await db.collection("user").findOne(query);
-  let passwordMatched = await db.collection("user").findOne(passwordQuery);
-
-  return emailExist;
+  let emailExists = await userModel.User.findAll({
+    where: { email: userInfo.email },
+  });
+  let passwordMatched = await userModel.User.findAll({
+    where: { password: userInfo.password },
+  });
+  if (emailExists[0] && passwordMatched[0]) {
+    console.log("Login successful");
+  } else {
+    console.log("Wrong credentials entered");
+  }
+  return emailExists;
 }
 
 async function userDelete(userid) {
