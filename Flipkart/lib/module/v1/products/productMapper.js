@@ -16,17 +16,6 @@ function loginMapping(params) {
     message: "Product added successfully",
     productProfile: {
       Productname: data.productName,
-      //  "_id": params.product._id,
-      // "productId": params.product.productId,
-      //  "productName": params.user.productName,
-      //  // "username": params.user.username,
-      //  "price": params.product.price,
-      //  "deliveryPinCode": params.product.deliveryPinCode,
-      //  "quantity": params.product.quantity,
-      //  "size": params.product.size,
-      //  "color": params.product.color,
-      //  // "profileImage": (params.user.profileImage!='')?((params.user.isSocialImage==1)?params.user.profileImage:config.cfg.s3.base_url+params.user.profileImage):'',
-      //  // "deviceToken" : params.user.deviceToken,
     },
   };
   return respObj;
