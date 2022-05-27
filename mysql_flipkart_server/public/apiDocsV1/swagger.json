@@ -1,0 +1,414 @@
+{
+  "swagger": "2.0",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "User",
+      "description": "Operations about user",
+      "externalDocs": {
+        "description": ""
+      }
+    },
+    {
+      "name": "Product",
+      "description": "Operations about product",
+      "externalDocs": {
+        "description": ""
+      }
+    }
+  ],
+  "schemes": ["http", "https"],
+  "consumes": [
+    "application/json",
+    "application/x-www-form-urlencoded",
+    "multipart/form-data"
+  ],
+  "produces": ["application/json"],
+  "paths": {
+    "/user/signup": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Signup",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "gender",
+            "in": "formData",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "dob",
+            "in": "formData",
+            "description": "date of birth - YYYY-MM-DD",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/login": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Login",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "password",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/user/logout": {
+      "post": {
+        "deprecated": false,
+        "tags": ["User"],
+        "description": "Logout",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "accessToken",
+            "in": "formData",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/product/add_product": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Product"],
+        "description": "Add Product",
+        "consumes": [
+          "application/x-www-form-urlencoded",
+          "multipart/form-data"
+        ],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "formData",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "productId",
+            "in": "formData",
+            "description": "",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "deliveryPinCode",
+            "in": "formData",
+            "description": "",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "description": "",
+            "type": "number"
+          },
+          {
+            "name": "color",
+            "in": "formData",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "formData",
+            "description": "",
+            "type": "number"
+          },
+          {
+            "name": "quantity",
+            "in": "formData",
+            "description": "",
+            "type": "number"
+          },
+          {
+            "name": "prodImage",
+            "in": "formData",
+            "description": "",
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/product/get_product": {
+      "post": {
+        "deprecated": false,
+        "tags": ["Product"],
+        "description": "Get Product",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "formData",
+            "description": "",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/product/place_order": {
+      "post": {
+        "tags": ["Product"],
+        "description": "Place Order",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "formData",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "quantity",
+            "in": "formData",
+            "description": "",
+            "type": "number"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/product/update_product": {
+      "put": {
+        "deprecated": false,
+        "tags": ["Product"],
+        "description": "Update Product",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "formData",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "quantity",
+            "in": "formData",
+            "description": "Enter product quantity",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/product/delete_product": {
+      "delete": {
+        "deprecated": false,
+        "tags": ["Product"],
+        "description": "Delete Product",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "formData",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    },
+    "/product/get_all_information": {
+      "get": {
+        "deprecated": false,
+        "tags": ["Product"],
+        "description": "Get Product",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": ["Username: ", "Password: "]
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "basicAuth": {
+      "type": "basic"
+    }
+  }
+}
