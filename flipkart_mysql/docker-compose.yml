@@ -9,7 +9,7 @@ services:
     environment:
       NODE_ENV: production
     ports:
-      - 3000:3000
+      - 3001:3001
 
   mysql:
     image: mysql
@@ -20,12 +20,12 @@ services:
 
   nginx:
     image: nginx:alpine
-    container_name: webserver
+    container_name: webserver1
     restart: unless-stopped
 
   redis:
     image: "redis:alpine"
-    container_name: redis
+    container_name: redis1
     restart: unless-stopped
     ports:
-      - 3500:6379
+      - 3501:6379
