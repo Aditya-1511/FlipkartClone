@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
   flipkart_mysql:
-    image: flipkart_mysql1
+    image: flipkart_mysql
     build:
       context: .
       dockerfile: ./Dockerfile

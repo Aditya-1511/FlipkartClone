@@ -23,7 +23,7 @@ async function connectDb(env, callback) {
     process.env.DB_USER,
     process.env.DB_PASS,
     {
-      host: "localhost",
+      host: "mysql",
       dialect: "mysql",
     }
   );
