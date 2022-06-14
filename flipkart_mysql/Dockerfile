@@ -5,7 +5,7 @@ COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 RUN apk add g++ make py3-pip
 RUN npm install
 COPY . .
-EXPOSE 3001
+EXPOSE 3000
 RUN chown -R node /usr/src/app
 USER node
 RUN npm install nodemon

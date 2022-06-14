@@ -6,26 +6,32 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+    env_file:
+      - ./.env
     environment:
       NODE_ENV: production
     ports:
-      - 3002:3002
+      - 3000:3000
+    links:
+      - redis
+      - mysql
 
   mysql:
     image: mysql
+    ports:
+      - "3306:3306"
     restart: always
     environment:
-      MYSQL_INITDB_ROOT_USERNAME: Aditya
-      MYSQL_INITDB_ROOT_PASSWORD: Aditya@123
+      MYSQL_ROOT_PASSWORD: Aditya@123
 
   nginx:
     image: nginx:alpine
-    container_name: webserver1
+    container_name: webserver
     restart: unless-stopped
 
   redis:
     image: "redis:alpine"
-    container_name: redis1
+    container_name: redis
     restart: unless-stopped
     ports:
-      - 3502:6379
+      - 3500:6379

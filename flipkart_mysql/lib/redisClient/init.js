@@ -10,7 +10,7 @@ var client;
   (logger = require("../logger"));
 
 var init = function () {
-  client = redis.createClient(config.cfg.redis.port, config.cfg.redis.server);
+  client = redis.createClient({ url: "redis://redis:6379" });
   return client.onAsync("error").then(function (error) {
     logger.info({ error: error });
   });
