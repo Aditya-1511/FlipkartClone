@@ -1,15 +1,15 @@
 version: "3.4"
 
 services:
-  test29042022:
-    image: flipkart_mysql
+  flipkart_mysql:
+    image: flipkart_mysql1
     build:
       context: .
       dockerfile: ./Dockerfile
     environment:
       NODE_ENV: production
     ports:
-      - 3001:3001
+      - 3002:3002
 
   mysql:
     image: mysql
@@ -28,4 +28,4 @@ services:
     container_name: redis1
     restart: unless-stopped
     ports:
-      - 3501:6379
+      - 3502:6379

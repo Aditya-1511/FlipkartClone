@@ -1,14 +1,14 @@
 version: '3.4'
 
 services:
-  test29042022:
-    image: flipkart_mysql
+  flipkart_mysql:
+    image: flipkart_mysql1
     build:
       context: .
       dockerfile: ./Dockerfile
     environment:
       NODE_ENV: development
     ports:
-      - 3000:3000
+      - 3002:3002
       - 9229:9229
     command: ["node", "--inspect=0.0.0.0:9229", "demo_node"]
