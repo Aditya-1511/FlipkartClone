@@ -1,0 +1,31 @@
+version: "3.4"
+
+services:
+  test29042022:
+    image: flipkart_mysql
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_INITDB_ROOT_USERNAME: Aditya
+      MYSQL_INITDB_ROOT_PASSWORD: Aditya@123
+
+  nginx:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+
+  redis:
+    image: "redis:alpine"
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - 3500:6379

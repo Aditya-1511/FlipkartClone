@@ -1,0 +1,31 @@
+version: "3.4"
+
+services:
+  test29042022:
+    image: test29042022
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: dbAdmin
+      MONGO_INITDB_ROOT_PASSWORD: password
+
+  nginx:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+
+  redis:
+    image: "redis:alpine"
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - 3500:6379
