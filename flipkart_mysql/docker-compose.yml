@@ -1,37 +1,27 @@
-version: "3.4"
+version: '3.4'
 
 services:
-  flipkart_mysql:
-    image: flipkart_mysql
+  log:
+    image: log
     build:
       context: .
       dockerfile: ./Dockerfile
     env_file:
       - ./.env
-    environment:
-      NODE_ENV: production
     ports:
-      - 3000:3000
-    links:
-      - redis
-      - mysql
-
-  mysql:
-    image: mysql
-    ports:
-      - "3306:3306"
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: Aditya@123
-
-  nginx:
-    image: nginx:alpine
-    container_name: webserver
+      - 5002:5002
+    links :
+      - mysqldb
+  mysqldb:
+    image: mysql:5.7
     restart: unless-stopped
-
-  redis:
-    image: "redis:alpine"
-    container_name: redis
-    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MYSQLDB_DATABASE
     ports:
-      - 3500:6379
+      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+    volumes:
+      - db:/var/lib/mysql
+volumes: 
+  db:
