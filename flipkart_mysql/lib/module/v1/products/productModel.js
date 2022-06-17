@@ -3,8 +3,8 @@ const constants = require("../../../constant");
 const { Sequelize, DataTypes } = require("sequelize");
 
 //intialise db
-const sequelize = new Sequelize("flipkart_mysql", "Aditya", "Aditya@123", {
-  host: "mysql",
+const sequelize = new Sequelize("flipkart_mysql", "root", "Aditya@123", {
+  host: "mysqldb",
   dialect: "mysql",
 });
 
