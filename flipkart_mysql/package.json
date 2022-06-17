@@ -1,9 +1,9 @@
 {
-  "name": "test29042022",
+  "name": "flipkart_mysql",
   "version": "1.0.0",
   "main": "demo_node",
   "private": true,
-  "author": "rahul singh",
+  "author": "Aditya Pandey",
   "scripts": {
     "start": "nodemon server.js"
   },
