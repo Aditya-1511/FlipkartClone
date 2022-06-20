@@ -16,8 +16,8 @@ require("dotenv/config");
 // };
 
 const s3 = new AWS.S3({
-  accessKeyId: "AKIAZ3F2NF2NE3CRTOW2",
-  secretAccessKey: "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",
+  accessKeyId: "AKIAZ3F2NF2NNJYWRA6V",
+  secretAccessKey: "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",
 });
 
 function _fetchFilesFromReq(request) {

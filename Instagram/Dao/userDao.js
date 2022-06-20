@@ -13,7 +13,7 @@ const jwt = require("../jwtHandler");
 
 async function signUp(userInfo) {
   let user = new User(userInfo);
-  //   console.log(user);
+    console.log(user);
   //    console.log(userInfo.email);
   let query = {};
   query.email = userInfo.email;

@@ -10,6 +10,7 @@ var resHndlr = require("../responseHandler");
 
 router.post("/signup", [validation.validateSignup], (req, res) => {
   console.log("Signup route is working fine");
+  console.log(req.body);
   userDao
     .signUp(req.body)
     .then(function (result) {

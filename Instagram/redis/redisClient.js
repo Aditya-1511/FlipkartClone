@@ -9,7 +9,7 @@ var client;
 //   (config = require("../config")),
 //   (logger = require("../logger"));
 
-var redisClient = redis.createClient({url:"redis://redis:6379"});
+var redisClient = redis.createClient(6379, '127.0.0.1'); //use 6379, '127.0.0.1' for non-docker case
 redisClient.connect();
 redisClient.on("connect", function (err) {
   console.log("Redis connected successfully");

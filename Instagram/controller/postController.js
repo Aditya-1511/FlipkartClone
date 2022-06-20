@@ -1,9 +1,12 @@
+const { template } = require("lodash");
 var postDao = require("../Dao/postDao");
 const nodemailer = require("../service/nodemailer_email");
+const sendGrid = require("../service/sendgrid_email");
 
 function add_post(postInfo) {
   // console.log(postInfo,"postInfo in postController");
-  nodemailer.send_mail(productInfo.email, data);
+  // nodemailer.send_mail(productInfo.email, data);
+  sendGrid.sendEmail(postInfo);
   return postDao.add_post(postInfo);
 }
 

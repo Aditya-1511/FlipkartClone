@@ -22,7 +22,7 @@ router.post(
     // console.log(req.payload, "req.payload");
     // console.log(req.body, "req.body");
     let { userid, postCaption, postLocation, imageLoction } = req.body;
-    console.log(imageLoction, "imagelacafcga");
+    // console.log(imageLoction, "imageLocation");
     postController
       .add_post({ userid, postCaption, postLocation, imageLoction })
       .then(function (result) {
