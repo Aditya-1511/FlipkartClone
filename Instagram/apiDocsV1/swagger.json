@@ -35,13 +35,6 @@
       "externalDocs": {
         "description": ""
       }
-    },
-    {
-      "name": "Get all the information",
-      "description": "",
-      "externalDocs": {
-        "description": ""
-      }
     }
   ],
   "schemes": ["http", "https"],
