@@ -34,7 +34,10 @@ function App() {
           setRoom(event.target.value);
         }}
       />{" "}
-      <button onClick={joinRoom}>Join Room</button>
+      <button className="joinRoom" onClick={joinRoom}>
+        Join Room
+      </button>
+      <br />
       <br />
       <input
         placeholder="Message..."
@@ -42,12 +45,16 @@ function App() {
           setMessage(event.target.value);
         }}
       />{" "}
-      <br />
       <button onClick={sendMessage}>Send Message</button>
-      {/* <h1>Sent Message: </h1> */}
-      {message}
-      {/* <h1>Received Message:</h1> */}
-      {messageReceived}
+      <h1>Room: {room} </h1>
+      <div className="liveChat">
+        <div className="sentMessage">
+          <h1>Sent Message: {message} </h1>
+        </div>
+        <div className="receivedMessage">
+          <h1>Received Message: {messageReceived} </h1>
+        </div>
+      </div>
     </div>
   );
 }

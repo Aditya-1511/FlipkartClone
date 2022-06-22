@@ -3,6 +3,8 @@ const app = express();
 const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
+const mongoose = require("mongoose");
+const Msg = require("./models/messages");
 
 app.use(cors());
 const server = http.createServer(app);
@@ -24,7 +26,11 @@ io.on("connection", (socket) => {
   socket.on("send_message", (data) => {
     //broadcast message
     // console.log(data, "data");
-    socket.to(data.room).emit("receive_message", data);
+    const msg = data.message;
+    const message = new Msg({ msg: msg });
+    message.save().then(() => {
+      socket.to(data.room).emit("receive_message", data);
+    });
   });
 });
 
