@@ -18,6 +18,10 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
   console.log(`User connected: ${socket.id}`);
 
+  socket.on("add_user", (data) => {
+    socket.emit(data);
+  });
+
   //group chat
   socket.on("join_room", (data) => {
     socket.join(data);
@@ -26,8 +30,17 @@ io.on("connection", (socket) => {
   socket.on("send_message", (data) => {
     //broadcast message
     // console.log(data, "data");
+    // console.log(socket.id,">>>>>>>>>>>>>>>>>>>>>>>>");
     const msg = data.message;
-    const message = new Msg({ msg: msg });
+    const userName = data.user;
+    const socketId = socket.id;
+    const roomNum = data.room;
+    const message = new Msg({
+      msg: msg,
+      userName: userName,
+      socketId: socketId,
+      roomNum: roomNum,
+    });
     message.save().then(() => {
       socket.to(data.room).emit("receive_message", data);
     });

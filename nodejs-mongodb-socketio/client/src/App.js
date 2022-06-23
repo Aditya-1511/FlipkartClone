@@ -8,6 +8,11 @@ function App() {
   const [message, setMessage] = useState("");
   const [messageReceived, setMessageReceived] = useState("");
   const [room, setRoom] = useState("");
+  const [user, setUser] = useState("");
+
+  const userName = () => {
+    socket.emit("add_user", { user });
+  };
 
   const joinRoom = () => {
     if (room !== "") {
@@ -16,7 +21,7 @@ function App() {
   };
 
   const sendMessage = () => {
-    socket.emit("send_message", { message, room });
+    socket.emit("send_message", { message, room, user });
   };
 
   //listening broadcast message
@@ -29,14 +34,19 @@ function App() {
   return (
     <div className="App">
       <input
+        placeholder="Enter your Name"
+        onChange={(event) => {
+          setUser(event.target.value);
+        }}
+      />{" "}
+      <button onClick={userName}>Add User</button> <br /> <br />
+      <input
         placeholder="Room Number..."
         onChange={(event) => {
           setRoom(event.target.value);
         }}
       />{" "}
-      <button className="joinRoom" onClick={joinRoom}>
-        Join Room
-      </button>
+      <button onClick={joinRoom}>Join Room</button>
       <br />
       <br />
       <input

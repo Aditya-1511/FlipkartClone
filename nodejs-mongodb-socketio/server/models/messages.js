@@ -9,10 +9,14 @@ const msgSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  //   userName: {
-  //     type: String,
-  //     required: true,
-  //   },
+  userName: {
+    type: String,
+    required: true,
+  },
+  socketId: [String],
+  roomNum: {
+    type: Number,
+  },
 });
 const Msg = mongoose.model("msg", msgSchema);
 module.exports = Msg;
