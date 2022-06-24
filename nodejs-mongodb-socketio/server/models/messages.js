@@ -17,6 +17,9 @@ const msgSchema = new mongoose.Schema({
   roomNum: {
     type: Number,
   },
+  fileLocation: {
+    type: String,
+  },
 });
 const Msg = mongoose.model("msg", msgSchema);
 module.exports = Msg;

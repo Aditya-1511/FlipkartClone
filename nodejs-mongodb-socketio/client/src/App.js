@@ -6,9 +6,10 @@ const socket = io.connect("http://localhost:3005");
 
 function App() {
   const [message, setMessage] = useState("");
-  const [messageReceived, setMessageReceived] = useState("");
+  const [messageReceived, setMessageReceived] = useState([]);
   const [room, setRoom] = useState("");
   const [user, setUser] = useState("");
+  const [file, setFile] = useState("");
 
   const userName = () => {
     socket.emit("add_user", { user });
@@ -21,13 +22,18 @@ function App() {
   };
 
   const sendMessage = () => {
-    socket.emit("send_message", { message, room, user });
+    socket.emit("send_message", { message, room, user, file });
+  };
+
+  const sendFile = () => {
+    socket.emit("send_file", { file });
   };
 
   //listening broadcast message
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      setMessageReceived(data.message);
+      console.log(data, "......................................");
+      setMessageReceived(data);
     });
   }, []);
 
@@ -56,13 +62,33 @@ function App() {
         }}
       />{" "}
       <button onClick={sendMessage}>Send Message</button>
-      <h1>Room: {room} </h1>
+      <br /> <br />
+      <input
+        type="file"
+        onChange={(event) => {
+          setFile(event.target.value);
+        }}
+      />{" "}
+      <h1> Room : {room} </h1>
       <div className="liveChat">
         <div className="sentMessage">
-          <h1>Sent Message: {message} </h1>
+          <h1>
+            {user} : {message}{" "}
+          </h1>
         </div>
         <div className="receivedMessage">
-          <h1>Received Message: {messageReceived} </h1>
+          {/* <h1>
+            {" "}
+            {messageReceived.user} : {messageReceived.message}{" "}
+          </h1> */}
+          {messageReceived.map((data, index) => {
+            console.log(data, "kkkkkkkkkkkkkkkkkkkkkkkk");
+            return (
+              <p key={index}>
+                <span>{data.user}</span> : {data.message}
+              </p>
+            );
+          })}
         </div>
       </div>
     </div>
