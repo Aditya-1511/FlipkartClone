@@ -7,23 +7,7 @@ const mongoose = require("mongoose");
 const Msg = require("./models/messages");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
-const multer = require("multer");
 const fs = require("fs");
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./uploads");
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, file.originalname);
-  },
-});
-
-const upload = multer({ storage: storage });
-
-const path = require("path");
-app.use(express.static(path.resolve(__dirname, "uploads")));
 
 app.use(cors());
 const server = http.createServer(app);
@@ -60,11 +44,11 @@ io.on("connection", (socket) => {
       userName: userName,
       socketId: socketId,
       roomNum: roomNum,
-      file: fileLocation,
+      fileLocation: fileLocation,
     });
     message.save().then(() => {
       socket.to(data.room).emit("receive_message", data);
-    });
+    }); 
   });
 });
 

@@ -25,14 +25,14 @@ function App() {
     socket.emit("send_message", { message, room, user, file });
   };
 
-  const sendFile = () => {
-    socket.emit("send_file", { file });
-  };
+  // const sendFile = () => {
+  //   socket.emit("send_file", { file });
+  // };
 
   //listening broadcast message
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      console.log(data, "......................................");
+      console.log(data, "..................");
       setMessageReceived(data);
     });
   }, []);
@@ -77,18 +77,11 @@ function App() {
           </h1>
         </div>
         <div className="receivedMessage">
-          {/* <h1>
+          <h1>
             {" "}
             {messageReceived.user} : {messageReceived.message}{" "}
-          </h1> */}
-          {messageReceived.map((data, index) => {
-            console.log(data, "kkkkkkkkkkkkkkkkkkkkkkkk");
-            return (
-              <p key={index}>
-                <span>{data.user}</span> : {data.message}
-              </p>
-            );
-          })}
+          </h1>
+          
         </div>
       </div>
     </div>
