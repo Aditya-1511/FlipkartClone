@@ -8,6 +8,7 @@ const Msg = require("./models/messages");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 const fs = require("fs");
+const appUtil = require("./appUtil");
 
 app.use(cors());
 const server = http.createServer(app);
@@ -19,7 +20,7 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log(`User connected: ${socket.id}`);
+  // console.log(`User connected: ${socket.id}`);
 
   socket.on("add_user", (data) => {
     socket.emit(data);
@@ -30,25 +31,22 @@ io.on("connection", (socket) => {
     socket.join(data);
   });
 
-  socket.on("send_message", (data) => {
-    //broadcast message
-    // console.log(data, "data");
-    // console.log(socket.id,">>>>>>>>>>>>>>>>>>>>>>>>");
+  socket.on("send_message", async (data) => {
+    // console.log(data)
     const msg = data.message;
     const userName = data.user;
     const socketId = socket.id;
     const roomNum = data.room;
-    const fileLocation = data.file;
     const message = new Msg({
       msg: msg,
       userName: userName,
       socketId: socketId,
       roomNum: roomNum,
-      fileLocation: fileLocation,
     });
+
     message.save().then(() => {
       socket.to(data.room).emit("receive_message", data);
-    }); 
+    });
   });
 });
 

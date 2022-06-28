@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/myChatAppdb").then(() => {
+mongoose.connect("mongodb://localhost:27017/let'sChatDb").then(() => {
   console.log("MongoDb connected successfully");
 });
 
 const msgSchema = new mongoose.Schema({
   msg: {
     type: String,
+    required: true,
   },
   userName: {
     type: String,
