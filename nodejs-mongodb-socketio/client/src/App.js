@@ -96,14 +96,13 @@ function App() {
             {messageReceived.user} : {messageReceived.message}{" "}
           </h1>
           <img src={messageReceived.img} height={250} width={350}></img>
-          <video
+          {/* <video
             controls
             src={messageReceived.img}
             height={350}
             width={350}
-          ></video>
-          <embed src={messageReceived.img} width="250" height="375"></embed>
-          <h1></h1>
+          ></video> */}
+          {/* <embed src={messageReceived.img} width="250" height="375"></embed> */}
         </div>
       </div>
     </div>

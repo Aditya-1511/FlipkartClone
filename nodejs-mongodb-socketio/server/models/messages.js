@@ -10,7 +10,6 @@ const msgSchema = new mongoose.Schema({
   },
   userName: {
     type: String,
-    required: true,
   },
   socketId: [String],
   roomNum: {
