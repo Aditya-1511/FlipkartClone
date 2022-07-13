@@ -1,5 +1,5 @@
-const { Client } = require('@elastic/elasticsearch');
-const client = new Client({ node: 'http://localhost:9200' });
+const { Client } = require("@elastic/elasticsearch");
+const client = new Client({ node: "http://localhost:9200" });
 
 const phraseSearch = async (_index, _type, phrase) => {
   const hits = [];
@@ -13,17 +13,17 @@ const phraseSearch = async (_index, _type, phrase) => {
         query: {
           multi_match: {
             fields: [
-              'firstname',
-              'lastname',
-              'gender',
-              'employer',
-              'email',
-              'city',
-              'state',
-              'address',
+              "firstname",
+              "lastname",
+              "gender",
+              "employer",
+              "email",
+              "city",
+              "state",
+              "address",
             ],
             query: phrase,
-            type: 'phrase_prefix',
+            type: "phrase_prefix",
             //lenient: true
           },
         },
@@ -41,7 +41,7 @@ const phraseSearch = async (_index, _type, phrase) => {
         },
       },
     })
-    .catch((e) => console.log('errr', e));
+    .catch((e) => console.log("errr", e));
   if (
     searchResult &&
     searchResult.body &&
@@ -59,5 +59,5 @@ const phraseSearch = async (_index, _type, phrase) => {
 };
 
 module.exports = {
-  phraseSearch
+  phraseSearch,
 };
